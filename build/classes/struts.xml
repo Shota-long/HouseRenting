@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="MyPackage" namespace="/" extends="struts-default">
+	
+	<global-allowed-methods>regex:.*</global-allowed-methods>
+		<action name="UserAction_*" class="com.renting.web.UserAction" method="{1}">
+			<!-- 转发-->
+			<result name="toLogin" >/Login/login.jsp</result>
+			<!-- 重定向 -->
+			<result name="toIndex" type="redirect">/index.jsp</result>
+			<result name="toRegister" >/Login/register.jsp</result>
+		</action>
+	</package>
+</struts>

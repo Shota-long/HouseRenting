@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="import" href="head.html" id="head"/>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+ 
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "dist/js/bootlint.js";  //bootlint.js 项目中的地址
+        document.body.appendChild(s)
+    })();
+</script>
+</head>
+<body>
+	<script type="text/javascript">
+		document.write(head.import.body.innerHTML);
+	</script>
+	<div class="container-fluid">
+		<div class="row-fluid">
+    				<div class="col-md-3"> 
+        				<a class="navbar-brand" href="#">
+        					<h1>HOUSERENT</h1>
+        				</a>
+   					 </div>
+   					 <div class="col-md-6">
+                		<div class="input-group">
+                    		<input type="text" class="form-control">
+                    		<span class="input-group-btn">
+                        	<button class="btn btn-default" type="button">Go!</button>
+                    		</span>
+              		    </div>
+              		 </div>
+             		<div class="col-md-2"></div>
+              	</div>
+     </div>
+</body>
+</html>
