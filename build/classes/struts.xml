@@ -15,5 +15,7 @@
 			<result name="toIndex" type="redirect">/index.jsp</result>
 			<result name="toRegister" >/Login/register.jsp</result>
 		</action>
+		<action name="HouseAction_*" class="com.renting.web.HouseAction" method="{1}">
+		</action>
 	</package>
 </struts>

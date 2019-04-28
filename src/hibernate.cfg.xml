@@ -22,6 +22,7 @@
 		<!-- 配置事务 -->
 		<property name="hibernate.current_session_context_class">thread</property>
 		<!-- 引入User.hbm.xml -->
-		<mapping resource="com/renting/domain/User.hbm.xml"/>			
+		<mapping resource="com/renting/domain/User.hbm.xml"/>
+		<mapping resource="com/renting/domain/House.hbm.xml"/>			
 	</session-factory>
 </hibernate-configuration>

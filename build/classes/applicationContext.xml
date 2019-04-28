@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 <!-- 默认使用空参的构造方法 -->
 <bean name="user" class="com.renting.domain.User" lazy-init="true">
-	
+</bean>
+<bean name="house" class="com.renting.domain.House" lazy-init="true">
 </bean>
 </beans>

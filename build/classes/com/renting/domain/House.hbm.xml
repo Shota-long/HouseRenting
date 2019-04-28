@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ <hibernate-mapping package="com.renting.domain">
+ 	<class name="com.renting.domain.House" table="houseInfor_table">
+ 		<id name="house_Id" column="house_id">
+ 		<!-- 主键生成策略 手动生成-->
+ 			<generator class="assigned"></generator>
+ 		</id>
+ 		<property name="house_Description" column="house_description" ></property>
+ 		<property name="house_Address" column="house_address" ></property>
+ 		<property name="house_Type" column="house_type" ></property>
+ 		<property name="house_Size" column="house_size" ></property>
+ 		<property name="house_Agent" column="house_agent"></property>
+ 		<property name="house_Grade" column="house_grade"></property>
+ 		<property name="house_Price" column="house_price"></property>
+ 		
+ 	</class>
+ </hibernate-mapping>

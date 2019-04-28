@@ -20,7 +20,22 @@
 <script src="http://cdn.bootcss.com/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
 <style type="text/css">
 body{
-	width:1350px;
+	width:1300px;
+}
+
+.img-responsive {
+  display: block;
+  height: 150px;
+  max-width: 150px;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+	text-decoration: underline;
 }
 </style>
 </head>
@@ -40,7 +55,7 @@ body{
            		<input type="text" class="form-control input-lg" placeholder="开始找房">
             	<span class="input-group-btn">
             		<br>
-              		<button class="btn btn-default input-lg" type="button" >搜房源</button>
+              		<button class="btn btn-default input-lg" type="button" onclick="findHouseInfo()">搜房源</button>
             	</span>
         	</div>
     	</div>
@@ -48,3 +63,104 @@ body{
     </div>
 	</div>
 </div>
+<hr/>
+<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+		<dl class="dl-horizontal">
+			<dt>租金：</dt>
+			<dd>
+				<label><input type="radio" name="rent" checked="checked">不限</label>
+				<label><input type="radio" name="rent">500元以下</label>
+				<label><input type="radio" name="rent">500-1000元</label>
+				<label><input type="radio" name="rent">1000-1500元</label>
+				<label><input type="radio" name="rent">1500-2000元</label>
+				<label><input type="radio" name="rent">2000-3000元</label>
+				<label><input type="radio" name="rent">3000-4500</label>
+				<label><input type="radio" name="rent">4500以上</label>
+			</dd>
+		</dl>
+	</div>
+	</div>
+	<div class="row-fluid">
+	<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+		<dl class="dl-horizontal">
+			<dt>厅室：</dt>
+			<dd>
+				<label><input type="radio" name="room" checked="checked">不限</label>
+				<label><input type="radio" name="room">一室</label>
+				<label><input type="radio" name="room">两室</label>
+				<label><input type="radio" name="room">三室</label>
+				<label><input type="radio" name="room">四室</label>
+				<label><input type="radio" name="room">四室以上</label>
+			</dd>
+		</dl>
+	</div>
+	</div>
+	<div class="row-fluid">
+	<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+		<dl class="dl-horizontal">
+			<dt>方式：</dt>
+			<dd>
+				<label><input type="radio" name="rent_way" checked="checked">不限</label>
+				<label><input type="radio" name="rent_way">整套出租</label>
+				<label><input type="radio" name="rent_way">单间出租</label>
+			</dd>
+		</dl>
+	</div>
+	</div>
+</div>
+<hr>
+<div id = "box"></div>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo"),
+		type:"get",
+		cache:false,
+		dataType:"json",
+		contentType:"application/json;charset=utf-8",
+		success:function(resultList){
+			addBox(resultList);
+		}
+	});
+});
+function addBox(resultList){
+	$.each(resultList,function(index,obj){
+		$("#box").append(
+				"<div class='container-fluid'>"+
+				 "<div class='row-fluid'>"+
+				 	"<div class='col-lg-2 col-md-2 col-xs-2 col-sm-2' >"+
+				 		"<a href='#' class = 'img-responsive'>"+
+				 		"<img src='../image/IMG_20160305_124528.jpg' class='img-responsive'>"+
+				 		"</a>"+
+				 	"</div>"+
+				 	"<div class='col-lg-8 col-md-8 col-xs-8 col-sm-8'>"+
+			 		"<div class='media-body'>"+
+			                "<h3 class='media-heading'>"+
+			                    "<a href='#'>"+obj['house_Description']+"</a>"+	
+			                "</h3>"+
+			                "<p>"+obj['house_Type']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['house_Size']+"㎡</p>"+
+			                "<p>"+obj['house_Address']+"</p>"+
+			                "<p>来自经纪人："+obj['house_Agent']+"</p>"+
+			            "</div>"+
+				 	"</div>"+
+				 	"<div class='col-lg-2 col-md-2 col-xs-2 col-sm-2'>"+
+				 		"<div class='media-body'>"+
+			               "<h3 class='media-heading' style='color: red;'>"+obj['house_Price']+"元/月</h3>"+
+							"<h4>评分："+obj['house_Grade']+"</h4>"+
+			            "</div>"+
+				 	"</div>"+
+				 "</div>"+
+			"</div>"+
+			"<br/>"+
+			"<br/>"
+		);
+	});
+}
+function findHouseInfo() {
+	alert("111111");
+}
+</script>
+</body>
+</html>
