@@ -20,7 +20,7 @@
 <script src="http://cdn.bootcss.com/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
 <style type="text/css">
 body{
-	width:1300px;
+	width:100%;
 }
 
 .img-responsive {
@@ -43,6 +43,7 @@ a:hover {
 <div class="container-fluid">
 	<div class="row-fluid" class="clearfix">
 	<jsp:include page="../head.jsp"></jsp:include>
+	<!--  
 	<div class="row-fluid" class="clearfix">
 		<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"> 
        		<a href="${pageContext.request.contextPath}/index.jsp">
@@ -61,9 +62,9 @@ a:hover {
     	</div>
       	<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3"></div>
     </div>
+    -->
 	</div>
 </div>
-<hr/>
 <div class="container-fluid">
 	<div class="row-fluid">
 	<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -109,6 +110,21 @@ a:hover {
 		</dl>
 	</div>
 	</div>
+	<div class="row-fluid">
+	<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+		<dl class="dl-horizontal">
+			<dt>装修程度：</dt>
+			<dd>
+				<label><input type="radio" name="decoration" checked="checked">不限</label>
+				<label><input type="radio" name="decoration">毛坯</label>
+				<label><input type="radio" name="decoration">简单装修</label>
+				<label><input type="radio" name="decoration">中等装修</label>
+				<label><input type="radio" name="decoration">精装修</label>
+				<label><input type="radio" name="decoration">豪华装修</label>
+			</dd>
+		</dl>
+	</div>
+	</div>
 </div>
 <hr>
 <div id = "box"></div>
@@ -132,7 +148,7 @@ function addBox(resultList){
 				 "<div class='row-fluid'>"+
 				 	"<div class='col-lg-2 col-md-2 col-xs-2 col-sm-2' >"+
 				 		"<a href='#' class = 'img-responsive'>"+
-				 		"<img src='../image/IMG_20160305_124528.jpg' class='img-responsive'>"+
+				 		"<img src='/upload/image/2019/05/04/6b623562-6b64-4507-9077-6d7436f46264.jpg' class='img-responsive'>"+
 				 		"</a>"+
 				 	"</div>"+
 				 	"<div class='col-lg-8 col-md-8 col-xs-8 col-sm-8'>"+

@@ -18,9 +18,17 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
+<!-- 城市三级联动 -->
+<script src="https://cdn.bootcss.com/distpicker/2.0.3/distpicker.js"></script>	
+
 <style type="text/css">
 body{
-	width:1350px;
+	width:100%;
+}
+.img-responsive {
+  display: block;
+  height: 200px;
+  max-width: 300px;
 }
 </style>
 </head>
@@ -28,6 +36,7 @@ body{
 <div class="container-fluid">
 	<div class="row-fluid" class="clearfix">
 	<jsp:include page="head.jsp"></jsp:include>
+	<!--  
 	<div class="row-fluid" class="clearfix">
 		<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"> 
        		<a href="#">
@@ -46,6 +55,7 @@ body{
     	</div>
       	<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3"></div>
     </div>
+    -->
 	</div>
 </div>
 <div class="container-fluid"> 
@@ -78,6 +88,48 @@ body{
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+</div>
+<br>
+<br>
+<div class="container-fluid">
+	<div>
+		<span style="font-size: 30px">热门租房</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/houseInformation/houseInforList.jsp ">查看全部房源</a>
+	</div>
+	<hr>	
 </div> 
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+			<div>
+				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
+				<div>
+					<p>雁山区雁山街</p>
+					<p style="font-size: 20px;">桂林理工大学26#529</p>
+					<p>
+						<span>两房一厅&nbsp;&nbsp;80㎡</span>
+  
+						<span style="color: red; font-size: 20px;">1200元/月</span>
+						
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+			<div>
+				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+			<div>
+				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+			<div>
+				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>
