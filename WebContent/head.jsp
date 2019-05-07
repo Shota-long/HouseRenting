@@ -86,7 +86,7 @@
 			cache:false
 		});
 		var login_name = "${login_name}";
-		var addre = "${addre}";
+		var addre = "${location}";
 		if(login_name!=null && login_name != ""){
 			$("#login").html("<a>${login_name}</a>");
 			$("#register").html("<a href='${pageContext.request.contextPath}/index.jsp' onclick='exit()'>退出</a>");

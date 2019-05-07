@@ -24,11 +24,13 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 	
 	@Test
 	public void findHouseInfo() throws IOException {
-		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");//ÉèÖÃ±àÂë
+		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");//è®¾ç½®ç¼–ç 
+		String location = (String) ActionContext.getContext().getSession().get("location");
 		HouseService houseService = new HouseService();
-		List<House> result = houseService.findHouseInfo();
-		String json = JSON.toJSONString(result); //Ê¹ÓÃfastJson×ª»»³Éjson¸ñÊ½
-		System.out.println(json);
+		List<House> result = houseService.findHouseInfo(location);
+		//é€šè¿‡jsonä¼ é€’æ•°æ®
+		String json = JSON.toJSONString(result); //å°†JSONå¯¹è±¡è½¬åŒ–ä¸ºJSONå­—ç¬¦ 
+		System.out.println("json:"+json);
 		PrintWriter writer = ServletActionContext.getResponse().getWriter();
 		writer.write(json);
 		writer.flush();

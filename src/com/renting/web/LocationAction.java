@@ -10,6 +10,6 @@ public class LocationAction {
 		String address = ServletActionContext.getRequest().getParameter("address");
 		LocationService locationService = new LocationService();
 		locationService.toSession(address);
-		System.out.println(ActionContext.getContext().getSession().get("addre"));
+		//System.out.println("Location:"+ActionContext.getContext().getSession().get("location"));
 	}
 }

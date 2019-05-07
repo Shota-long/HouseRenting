@@ -17,20 +17,20 @@ import com.renting.utils.HibernateUtil;
 public class UserService {
 
 	public boolean findUser(User user) {
-		Session session = HibernateUtil.getCurrentSession();//»ñÈ¡session
-		Transaction transaction = session.beginTransaction();//¿ªÆôÊÂÎñ
+		Session session = HibernateUtil.getCurrentSession();//è·å–session
+		Transaction transaction = session.beginTransaction();//å¼€å¯äº‹åŠ¡
 		UserDao user_dao = new UserDao();
 //		user.setUsername("John");
 //		user.setPassword("123");
 		User temp = user_dao.findUser(user);
-		transaction.commit();
-		session.close();
+		transaction.commit(); //æäº¤äº‹åŠ¡
+		session.close();	//å…³é—­session
 		return temp == null? false:true;
 	}
 	
 	public boolean addUser(User user) {
-		Session session = HibernateUtil.getCurrentSession();//»ñÈ¡session
-		Transaction transaction = session.beginTransaction();//¿ªÆôÊÂÎñ
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
 		////////////////////////////
 //		User user = new User();
 //		user.setUid("2");
@@ -42,15 +42,15 @@ public class UserService {
 		///////////////////////////////
 		UserDao user_dao = new UserDao();
 		Serializable save = user_dao.addUser(user);
-		transaction.commit();//Ìá½»ÊÂÎñ
+		transaction.commit();
 		session.close();
 		return save == user.getUid()?true:false;
 		
 	}
 
 	public Boolean verifUsername(String name) {
-		Session session = HibernateUtil.getCurrentSession();//»ñÈ¡session
-		Transaction transaction = session.beginTransaction();//¿ªÆôÊÂÎñ
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
 		UserDao user_dao = new UserDao();
 		User temp = user_dao.verifUsername(name);
 		transaction.commit();
@@ -60,10 +60,8 @@ public class UserService {
 	}
 
 	public void removeSession() {
-		//Çå¿Õsession
+		//æ¸…é™¤session
 		ActionContext.getContext().getSession().remove("login_name");
-		//Çå¿Õcookie
-		
 	}
 
 }

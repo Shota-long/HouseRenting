@@ -1,7 +1,5 @@
 package com.renting.web;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.util.Random;
 import java.util.UUID;
 
@@ -27,7 +25,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	User user = (User) ac.getBean("user");
 
 	public String login() throws Exception {
-		System.out.println("用户名："+user.getUsername());
 		UserService user_service = new UserService();
 		boolean success = user_service.findUser(user);
 		if(success) {
@@ -38,7 +35,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		}
 		else {
 			System.out.println("fail");
-			ActionContext.getContext().put("error", "用户名或密码错误");
+			ActionContext.getContext().put("error", "鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒");
 			return "toLogin";
 		}
 		
@@ -55,7 +52,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		}
 		else {
 			System.out.println("fail");
-			ActionContext.getContext().put("error", "注册失败");
+			ActionContext.getContext().put("error", "娉ㄥ唽澶辫触");
 			return "toRegister";
 		}
 		
@@ -78,7 +75,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	} 
 	
 	public void removeSession() throws Exception {
-		System.out.println("正在清除session");
 		UserService user_service = new UserService();
 		user_service.removeSession();
 		System.out.println(ActionContext.getContext().getSession().get("login_name"));

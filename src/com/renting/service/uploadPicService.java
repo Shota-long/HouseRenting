@@ -16,7 +16,6 @@ public class uploadPicService {
 		
 		File file = picture.getFile();
 		String fileFileName = picture.getFileFileName();
-		
 		String[] getPath = getPath();
 		String realPath = getPath[0];
 		String savePath = getPath[1];
@@ -30,7 +29,7 @@ public class uploadPicService {
 			fileName = UUID.randomUUID()+"."+names[names.length-1];
 		}
 		if(file != null) {
-			//¸´ÖÆÍ¼Æ¬
+			//æŠŠå›¾ç‰‡å¤åˆ¶åˆ°ç›®å½•ä¸­
 			try {
 				FileUtils.copyFile(file, new File(new File(realPath),fileName));
 				uploadPicDao uploadDao = new uploadPicDao();
@@ -41,16 +40,16 @@ public class uploadPicService {
 			}
 		}
 	}
-	//»ñÈ¡ÉÏ´«Â·¾¶
+	
 	public String[] getPath(){
-		String filePath = "D:\\upload\\image";      //Í¼Æ¬´æ´¢Êµ¼ÊµØÖ·
-		String save_filePath = "/upload/image"; //´æµ½Êı¾İ¿âµÄÏà¶ÔÂ·¾¶
+		String filePath = "D:\\upload\\image"; //æœåŠ¡å™¨å­˜å‚¨è·¯å¾„
+		String save_filePath = "/upload/image"; //ç›¸å¯¹è·¯å¾„
 		File file = new File(filePath);
 		if(!file.exists()) {
 			file.mkdir();
 		}
-		Calendar cal = Calendar.getInstance();  //»ñÈ¡µ±Ç°Ê±¼ä
-		//Èç¹ûÄêµÄÄ¿Â¼²»´æÔÚ£¬´´½¨ÄêµÄÄ¿Â¼
+		Calendar cal = Calendar.getInstance();  
+		//åˆ›å»ºyearç›®å½•
 		int year = cal.get(Calendar.YEAR);
 		filePath = filePath+"\\"+year;
 		save_filePath = save_filePath+"/"+year;
@@ -58,22 +57,21 @@ public class uploadPicService {
 		if(!file.exists()) {
 			file.mkdir();
 		}
-		//Èç¹ûÔÂµÄÄ¿Â¼²»´æÔÚ£¬´´½¨ÔÂµÄÄ¿Â¼
+		//åˆ›å»ºmonthç›®å½•
 		int month = cal.get(Calendar.MONTH)+1;
 		filePath = filePath+"\\";
 		save_filePath = save_filePath+"/";
 		if(month<10) {
 			filePath = filePath+"0";
 			save_filePath = save_filePath +"0";
-		}
-			
+		}	
 		filePath = filePath + month;
 		save_filePath = save_filePath + month;
 		file = new File(filePath);
 		if(!file.exists()) {
 			file.mkdir();
 		}
-		//Èç¹ûÈÕµÄÄ¿Â¼²»´æÔÚ£¬´´½¨ÈÕµÄÄ¿Â¼
+		//åˆ›å»ºdayç›®å½•
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		filePath = filePath+"\\";
 		save_filePath = save_filePath+"/";

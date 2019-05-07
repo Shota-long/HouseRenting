@@ -23,7 +23,6 @@ public class uploadPicAction extends ActionSupport implements ModelDriven<Pictur
 	ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 	Picture picture = (Picture) ac.getBean("picture");
 	
-	//把图片复制到服务器，并把路径存储到数据库
 	public void uploadPic() {
 		uploadPicService uploadService = new uploadPicService();
 		uploadService.uploadPic(picture);

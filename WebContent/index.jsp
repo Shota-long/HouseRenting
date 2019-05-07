@@ -27,8 +27,8 @@ body{
 }
 .img-responsive {
   display: block;
-  height: 200px;
-  max-width: 300px;
+  height: 220px;
+  max-width: 400px;
 }
 </style>
 </head>
@@ -99,37 +99,48 @@ body{
 </div> 
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-			<div>
-				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
-				<div>
-					<p>雁山区雁山街</p>
-					<p style="font-size: 20px;">桂林理工大学26#529</p>
-					<p>
-						<span>两房一厅&nbsp;&nbsp;80㎡</span>
-  
-						<span style="color: red; font-size: 20px;">1200元/月</span>
-						
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-			<div>
-				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-			<div>
-				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-			<div>
-				<img src="image/MYXJ_20160120133427_fast.jpg" class="img-responsive">
-			</div>
-		</div>
+		<div id="box"></div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(function() { //页面加载完成执行该方法
+		$.ajax({
+			url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo"),
+			type:"post",
+			cache:false,
+			dataType:"json",
+			contentType:"application/json;charset=utf-8",
+			success:function(resultList){
+				addBox(resultList);
+			}
+		});
+	});
+	function addBox(resultList) {
+		var count = 0;
+		$.each(resultList,function(index,obj){
+			if (count<4) {
+				$("#box").append(
+						"<div class='col-lg-3 col-md-3 col-xs-3 col-sm-3'>"+
+						"<div>"+
+							"<img src='/upload/image/2019/05/05/aecb8a92dcb14fea965e6f3c3ebcf65c.jpg' class='img-responsive'>"+
+							"<div>"+
+								"<p style='font-size: 18px;'>"+obj['title']+"</p>"+
+								"<p>"+obj['location']+"</p>"+
+								"<p>"+
+									"<span>"+obj['type']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['area']+"㎡&nbsp;&nbsp;&nbsp;&nbsp;"+obj['rent_way']+"</span>"+
+									
+								"</p>"+
+								"<p>"+
+									"<span style='color: red; font-size: 20px;'>"+obj['price']+"元/月</span>"+
+								"</p>"+
+							"</div>"+
+						"</div>"+
+					"</div>"	
+				);
+			}
+			count++;
+		});
+	}
+</script>
 </body>
 </html>

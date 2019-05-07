@@ -18,7 +18,7 @@ public class HibernateUtil {
 		Session session = sessionFactory.openSession();
 		return session;
 	}
-	//获取同一个session
+	
 	public static Session getCurrentSession() {
 		return  sessionFactory.getCurrentSession();
 	}

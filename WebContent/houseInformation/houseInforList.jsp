@@ -25,8 +25,8 @@ body{
 
 .img-responsive {
   display: block;
-  height: 150px;
-  max-width: 150px;
+  height: 110px;
+  max-width: 200px;
 }
 a{
 	color: black;
@@ -126,7 +126,6 @@ a:hover {
 	</div>
 	</div>
 </div>
-<hr>
 <div id = "box"></div>
 <script type="text/javascript">
 $(function(){
@@ -143,28 +142,30 @@ $(function(){
 });
 function addBox(resultList){
 	$.each(resultList,function(index,obj){
+		
 		$("#box").append(
+				"<hr>"+
 				"<div class='container-fluid'>"+
 				 "<div class='row-fluid'>"+
 				 	"<div class='col-lg-2 col-md-2 col-xs-2 col-sm-2' >"+
 				 		"<a href='#' class = 'img-responsive'>"+
-				 		"<img src='/upload/image/2019/05/04/6b623562-6b64-4507-9077-6d7436f46264.jpg' class='img-responsive'>"+
+				 		"<img src='/upload/image/2019/05/05/aecb8a92dcb14fea965e6f3c3ebcf65c.jpg' class='img-responsive'>"+
 				 		"</a>"+
 				 	"</div>"+
 				 	"<div class='col-lg-8 col-md-8 col-xs-8 col-sm-8'>"+
 			 		"<div class='media-body'>"+
 			                "<h3 class='media-heading'>"+
-			                    "<a href='#'>"+obj['house_Description']+"</a>"+	
+			                    "<a href='#'>"+obj['title']+"</a>"+	
 			                "</h3>"+
-			                "<p>"+obj['house_Type']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['house_Size']+"㎡</p>"+
-			                "<p>"+obj['house_Address']+"</p>"+
-			                "<p>来自经纪人："+obj['house_Agent']+"</p>"+
+			                "<p>"+obj['type']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['area']+"㎡"+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['rent_way']+"</p>"+
+			                "<p>"+obj['location']+"</p>"+
+			                "<p>经纪人："+obj['username']+"</p>"+
 			            "</div>"+
 				 	"</div>"+
 				 	"<div class='col-lg-2 col-md-2 col-xs-2 col-sm-2'>"+
 				 		"<div class='media-body'>"+
-			               "<h3 class='media-heading' style='color: red;'>"+obj['house_Price']+"元/月</h3>"+
-							"<h4>评分："+obj['house_Grade']+"</h4>"+
+			               "<h3 class='media-heading' style='color: red;'>"+obj['price']+"元/月</h3>"+
+							"<h4>评分："+obj['grade']+"</h4>"+
 			            "</div>"+
 				 	"</div>"+
 				 "</div>"+
@@ -172,11 +173,10 @@ function addBox(resultList){
 			"<br/>"+
 			"<br/>"
 		);
+		
 	});
 }
-function findHouseInfo() {
-	alert("111111");
-}
+
 </script>
 </body>
 </html>

@@ -11,11 +11,11 @@ import com.renting.utils.HibernateUtil;
 
 public class HouseService {
 
-	public List<House> findHouseInfo() {
+	public List<House> findHouseInfo(String location) {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		HouseDao house_dao = new HouseDao();
-		List<House>resultList =  house_dao.findHouseInfo();
+		List<House>resultList =  house_dao.findHouseInfo(location);
 		transaction.commit();
 		session.close();
 		return resultList;

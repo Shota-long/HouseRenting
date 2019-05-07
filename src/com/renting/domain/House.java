@@ -1,61 +1,110 @@
 package com.renting.domain;
 
 public class House {
-	private String house_Id;
-	private String house_Description;
-	private String house_Address;
-	private String house_Type;
-	private Integer house_Size;
-	private String house_Agent;
-	private Double house_Grade;
-	private Integer house_Price;
+	private int house_id; //id
+	private String user_id;//用户id
+	private String title; //租房信息标题
+	private String location;  //所属区域
+	private int price;	 // 租金
+	private String deposit_way;	//押金方式
+	private String rent_way; //出租方式
+	private String type;  //房屋类型
+	private int area;  //面积
+	private String decoration; // 装修程度
+	private int floor;		//所在楼层
+	private String address; //具体地址
+	private String description; //详细描述
+	private Double grade; //评分
+	private String username;
+	public int getHouse_id() {
+		return house_id;
+	}
+	public void setHouse_id(int house_id) {
+		this.house_id = house_id;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getDeposit_way() {
+		return deposit_way;
+	}
+	public void setDeposit_way(String deposit_way) {
+		this.deposit_way = deposit_way;
+	}
+	public String getRent_way() {
+		return rent_way;
+	}
+	public void setRent_way(String rent_way) {
+		this.rent_way = rent_way;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getArea() {
+		return area;
+	}
+	public void setArea(int area) {
+		this.area = area;
+	}
+	public String getDecoration() {
+		return decoration;
+	}
+	public void setDecoration(String decoration) {
+		this.decoration = decoration;
+	}
+	public int getFloor() {
+		return floor;
+	}
+	public void setFloor(int floor) {
+		this.floor = floor;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Double getGrade() {
+		return grade;
+	}
+	public void setGrade(Double grade) {
+		this.grade = grade;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	
-	public String getHouse_Id() {
-		return house_Id;
-	}
-	public void setHouse_Id(String house_Id) {
-		this.house_Id = house_Id;
-	}
-	public String getHouse_Description() {
-		return house_Description;
-	}
-	public void setHouse_Description(String house_Description) {
-		this.house_Description = house_Description;
-	}
-	public String getHouse_Address() {
-		return house_Address;
-	}
-	public void setHouse_Address(String house_Address) {
-		this.house_Address = house_Address;
-	}
-	public String getHouse_Type() {
-		return house_Type;
-	}
-	public void setHouse_Type(String house_Type) {
-		this.house_Type = house_Type;
-	}
-	public Integer getHouse_Size() {
-		return house_Size;
-	}
-	public void setHouse_Size(Integer house_Size) {
-		this.house_Size = house_Size;
-	}
-	public String getHouse_Agent() {
-		return house_Agent;
-	}
-	public void setHouse_Agent(String house_Agent) {
-		this.house_Agent = house_Agent;
-	}
-	public Double getHouse_Grade() {
-		return house_Grade;
-	}
-	public void setHouse_Grade(Double house_Grade) {
-		this.house_Grade = house_Grade;
-	}
-	public Integer getHouse_Price() {
-		return house_Price;
-	}
-	public void setHouse_Price(Integer house_Price) {
-		this.house_Price = house_Price;
-	}
 }

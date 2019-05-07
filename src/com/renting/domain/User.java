@@ -2,12 +2,12 @@ package com.renting.domain;
 
 public class User {
 	
-	private String uid;
-	private String username;
-	private String password;
-	private String telephone;
-	private String email;
-	private String authority;
+	private String uid;   //id
+	private String username; //用户名	
+	private String password; //密码
+	private String telephone; // 电话
+	private String email;    //邮箱地址
+	private String authority; //权限
 	
 	public String getUid() {
 		return uid;

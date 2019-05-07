@@ -16,7 +16,7 @@ public class UserDao {
 
 	public User findUser(User user) {
 		
-		Session session = HibernateUtil.getCurrentSession();//获取session
+		Session session = HibernateUtil.getCurrentSession();//鑾峰彇session
 		String hql = "from com.renting.domain.User where username = :username and password = :password";
 		Query query = session.createQuery(hql);
 		query.setParameter("username", user.getUsername());
@@ -26,14 +26,14 @@ public class UserDao {
 	}
 
 	public Serializable addUser(User user) {
-		Session session = HibernateUtil.getCurrentSession();//获取session
+		Session session = HibernateUtil.getCurrentSession();//鑾峰彇session
 		Serializable save = session.save(user);
 		return save;
 	}
 
 	public User verifUsername(String name) {
 		
-		Session session = HibernateUtil.getCurrentSession();//获取session
+		Session session = HibernateUtil.getCurrentSession();//鑾峰彇session
 		String hql = "from com.renting.domain.User where username = :username";
 		Query query = session.createQuery(hql);
 		query.setParameter("username", name);
