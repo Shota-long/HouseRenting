@@ -20,13 +20,13 @@ public class uploadPicService {
 		String realPath = getPath[0];
 		String savePath = getPath[1];
 		System.out.println(realPath);
-		System.out.println("savePath"+savePath);
+		System.out.println("savePath："+savePath);
 		picture.setFilePath(savePath);		
-		System.out.println("fileFileName"+picture.getFileFileName());
 		String names[] = fileFileName.split("\\.");
 		String fileName = "";
 		if(names.length >= 1 ) {
 			fileName = UUID.randomUUID()+"."+names[names.length-1];
+			picture.setFileFileName(fileName);
 		}
 		if(file != null) {
 			//把图片复制到目录中

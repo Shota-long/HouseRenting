@@ -10,6 +10,7 @@ import com.renting.utils.HibernateUtil;
 public class TestDao {
 	@Test
 	public void test() {
+		/*
 		Session session = HibernateUtil.getSession();
 		String hql = "from com.renting.domain.User where username = :username and password = :password";
 		Query query = session.createQuery(hql);
@@ -17,11 +18,12 @@ public class TestDao {
 		query.setParameter("password" , "123");
 		User result = (User) query.uniqueResult();
 		if(result != null) {
-			System.out.println("²éÑ¯³É¹¦");
+			System.out.println("ï¿½ï¿½Ñ¯ï¿½É¹ï¿½");
 		}
 		else {
-			System.out.println("²éÑ¯Ê§°Ü");
+			System.out.println("ï¿½ï¿½Ñ¯Ê§ï¿½ï¿½");
 		}
+		*/
 		
 	}
 }

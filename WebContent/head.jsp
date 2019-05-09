@@ -6,9 +6,10 @@
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 </head>
 <body>
-<div>
+<div >
 	<nav class="navbar navbar-default" role="navigation">
     	<div>
      		<ul class="nav navbar-nav">

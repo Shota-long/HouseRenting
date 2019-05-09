@@ -8,6 +8,7 @@
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title></title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +36,9 @@ body{
 <body>
 <div class="container-fluid">
 	<div class="row-fluid" class="clearfix">
+	<div class="col-md-13">
 	<jsp:include page="head.jsp"></jsp:include>
+	</div>
 	<!--  
 	<div class="row-fluid" class="clearfix">
 		<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"> 
@@ -59,6 +62,8 @@ body{
 	</div>
 </div>
 <div class="container-fluid"> 
+	<div class = "row">
+	<div class="col-lg-13 center">
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- 轮播（Carousel）指标 -->
 		<ol class="carousel-indicators">
@@ -88,6 +93,8 @@ body{
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+	</div>
+	</div>
 </div>
 <br>
 <br>
@@ -112,6 +119,7 @@ body{
 			contentType:"application/json;charset=utf-8",
 			success:function(resultList){
 				addBox(resultList);
+				//console.log(resultList);
 			}
 		});
 	});
@@ -119,10 +127,13 @@ body{
 		var count = 0;
 		$.each(resultList,function(index,obj){
 			if (count<4) {
+				var picName = obj.picList[0].fileFileName;
+				var picPath = obj.picList[0].filePath;
+				var picSrc = picPath+picName;
 				$("#box").append(
-						"<div class='col-lg-3 col-md-3 col-xs-3 col-sm-3'>"+
+						"<div class='col-lg-3 center'>"+
 						"<div>"+
-							"<img src='/upload/image/2019/05/05/aecb8a92dcb14fea965e6f3c3ebcf65c.jpg' class='img-responsive'>"+
+							"<img src="+picSrc+" class='img-responsive'>"+
 							"<div>"+
 								"<p style='font-size: 18px;'>"+obj['title']+"</p>"+
 								"<p>"+obj['location']+"</p>"+

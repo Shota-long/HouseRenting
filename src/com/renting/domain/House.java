@@ -1,5 +1,7 @@
 package com.renting.domain;
 
+import java.util.List;
+
 public class House {
 	private int house_id; //id
 	private String user_id;//用户id
@@ -15,7 +17,9 @@ public class House {
 	private String address; //具体地址
 	private String description; //详细描述
 	private Double grade; //评分
-	private String username;
+	private User user;
+	private List<Picture> picList;
+	
 	public int getHouse_id() {
 		return house_id;
 	}
@@ -100,11 +104,18 @@ public class House {
 	public void setGrade(Double grade) {
 		this.grade = grade;
 	}
-	public String getUsername() {
-		return username;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public List<Picture> getPicList() {
+		return picList;
+	}
+	public void setPicList(List<Picture> picList) {
+		this.picList = picList;
 	}
 	
 }

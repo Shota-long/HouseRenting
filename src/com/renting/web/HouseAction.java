@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+
 import org.apache.struts2.ServletActionContext;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -24,10 +27,18 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 	
 	@Test
 	public void findHouseInfo() throws IOException {
+		System.out.println("/////////////////////////执行action");
 		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");//设置编码
-		String location = (String) ActionContext.getContext().getSession().get("location");
+		String house_id = ServletActionContext.getRequest().getParameter("house_id");
+		String location = (String) ActionContext.getContext().getSession().get("location"); //情况
+		String minprice = ServletActionContext.getRequest().getParameter("minprice");//最低价格
+		String maxprice = ServletActionContext.getRequest().getParameter("maxprice");//最高价格
+		String type = ServletActionContext.getRequest().getParameter("type"); //房屋类型
+		String rent_way = ServletActionContext.getRequest().getParameter("rent_way"); //出租方式
+		String decoration = ServletActionContext.getRequest().getParameter("decoration"); //装修情况
+		System.out.println("house_id:"+house_id+",location:"+location+",minprice:"+minprice+",type:"+type+",rent_way:"+rent_way+",decoration:"+decoration);
 		HouseService houseService = new HouseService();
-		List<House> result = houseService.findHouseInfo(location);
+		List<House> result = houseService.findHouseInfo(house_id,location,minprice,maxprice,type,rent_way,decoration);
 		//通过json传递数据
 		String json = JSON.toJSONString(result); //将JSON对象转化为JSON字符 
 		System.out.println("json:"+json);
