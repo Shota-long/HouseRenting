@@ -31,6 +31,14 @@ body{
   height: 220px;
   max-width: 400px;
 }
+a{
+	color: black;
+	text-decoration: none;
+}
+a:hover {
+	color: red;
+	text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -135,7 +143,7 @@ body{
 						"<div>"+
 							"<img src="+picSrc+" class='img-responsive'>"+
 							"<div>"+
-								"<p style='font-size: 18px;'>"+obj['title']+"</p>"+
+								"<p style='font-size: 18px;'><a href='houseInformation/houseInfor.jsp?house_id="+obj['house_id']+"'>"+obj['title']+"</a></p>"+
 								"<p>"+obj['location']+"</p>"+
 								"<p>"+
 									"<span>"+obj['type']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['area']+"㎡&nbsp;&nbsp;&nbsp;&nbsp;"+obj['rent_way']+"</span>"+

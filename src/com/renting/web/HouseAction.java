@@ -13,6 +13,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -40,7 +42,7 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 		HouseService houseService = new HouseService();
 		List<House> result = houseService.findHouseInfo(house_id,location,minprice,maxprice,type,rent_way,decoration);
 		//通过json传递数据
-		String json = JSON.toJSONString(result); //将JSON对象转化为JSON字符 
+		String json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
 		System.out.println("json:"+json);
 		PrintWriter writer = ServletActionContext.getResponse().getWriter();
 		writer.write(json);

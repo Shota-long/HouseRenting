@@ -94,7 +94,7 @@ a:hover {
 				<label><input type="radio" name="room" value="两室" onclick="check()">两室</label>
 				<label><input type="radio" name="room" value="三室" onclick="check()">三室</label>
 				<label><input type="radio" name="room" value="四室" onclick="check()">四室</label>
-				<label><input type="radio" name="room" value="四室以上" onclick="check()">四室以上</label>
+				<label><input type="radio" name="room" value="五室" onclick="check()">五室</label>
 			</dd>
 		</dl>
 	</div>
@@ -166,7 +166,7 @@ function addBox(resultList){
 			                "</h3>"+
 			                "<p>"+obj['type']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['area']+"㎡&nbsp;&nbsp;&nbsp;&nbsp;"+obj['decoration']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['rent_way']+"</p>"+
 			                "<p>"+obj['location']+"</p>"+
-			                "<p>经纪人："+obj['username']+"</p>"+
+			                "<p>经纪人："+obj.user.username+"</p>"+
 			            "</div>"+
 				 	"</div>"+
 				 	"<div class='col-lg-2 center'>"+

@@ -43,15 +43,7 @@ public class HouseService {
 		}
 		
 		if(type != null && type != "") {
-			
-			if(type == "四室以上") {
-				dc.add(Restrictions.not(Restrictions.like("type", "一室%")));
-				dc.add(Restrictions.not(Restrictions.like("type", "二室%")));
-				dc.add(Restrictions.not(Restrictions.like("type", "三室%")));
-				dc.add(Restrictions.not(Restrictions.like("type", "四室%")));
-			}
-			else
-				dc.add(Restrictions.like("type", type+"%"));
+			dc.add(Restrictions.like("type", type+"%"));
 		}
 		
 		if(rent_way != null && rent_way != "") {
