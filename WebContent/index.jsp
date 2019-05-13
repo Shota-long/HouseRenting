@@ -12,7 +12,7 @@
 <title></title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
- 
+ <link rel="stylesheet" href="layui/css/layui.css">
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
  
@@ -21,30 +21,48 @@
 <script src="http://cdn.bootcss.com/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
 <!-- 城市三级联动 -->
 <script src="https://cdn.bootcss.com/distpicker/2.0.3/distpicker.js"></script>	
-
+<script src="layui/layui.js"></script>
 <style type="text/css">
-body{
-	width:100%;
+/*
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
 }
+*/
 .img-responsive {
-  display: block;
-  height: 220px;
-  max-width: 400px;
+ 	display: block;
+  	height: 220px;
+  	max-width: 400px;
 }
+
+div.overflow{
+	overflow: hidden;  /* 额外部分隐藏*/
+}
+
+img{  
+  cursor: pointer;  
+  transition: all 0.5s; /* 所有的属性变化在0.5s的时间段内完成 */
+}  
+
+img:hover{  
+  transform: scale(1.2); /* 鼠标放到图片上的时候图片按比例放大1.5倍   */
+}  
+
 a{
 	color: black;
 	text-decoration: none;
 }
+
 a:hover {
 	color: red;
-	text-decoration: underline;
+	/*text-decoration: underline;*/
+	text-decoration: none;
 }
+
 </style>
 </head>
 <body>
-<div class="container-fluid">
-	<div class="row-fluid" class="clearfix">
-	<div class="col-md-13">
+	<div>
 	<jsp:include page="head.jsp"></jsp:include>
 	</div>
 	<!--  
@@ -67,8 +85,6 @@ a:hover {
       	<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3"></div>
     </div>
     -->
-	</div>
-</div>
 <div class="container-fluid"> 
 	<div class = "row">
 	<div class="col-lg-13 center">
@@ -82,13 +98,13 @@ a:hover {
 		<!-- 轮播（Carousel）项目 -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="image/slide1.png" alt="First slide" style="height:500px">
+				<img src="${pageContext.request.contextPath}/image/slide1.png" alt="First slide" style="height:500px">
 			</div>
 			<div class="item">
-				<img src="image/slide2.png" alt="Second slide" style="height:500px">
+				<img src="${pageContext.request.contextPath}/image/slide2.png" alt="Second slide" style="height:500px">
 			</div>
 			<div class="item">
-				<img src="image/slide3.png" alt="Third slide" style="height:500px">
+				<img src="${pageContext.request.contextPath}/image/slide3.png" alt="Third slide" style="height:500px">
 			</div>
 		</div>
 		<!-- 轮播（Carousel）导航 -->
@@ -141,9 +157,12 @@ a:hover {
 				$("#box").append(
 						"<div class='col-lg-3 center'>"+
 						"<div>"+
+							"<div class='overflow'>"+
+							"<a href='${pageContext.request.contextPath}/houseInformation/houseInfor.jsp?house_id="+obj['house_id']+"'>"+
 							"<img src="+picSrc+" class='img-responsive'>"+
+							"</div>"+
 							"<div>"+
-								"<p style='font-size: 18px;'><a href='houseInformation/houseInfor.jsp?house_id="+obj['house_id']+"'>"+obj['title']+"</a></p>"+
+								"<p style='font-size: 18px;'><a href='${pageContext.request.contextPath}/houseInformation/houseInfor.jsp?house_id="+obj['house_id']+"'>"+obj['title']+"</a></p>"+
 								"<p>"+obj['location']+"</p>"+
 								"<p>"+
 									"<span>"+obj['type']+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj['area']+"㎡&nbsp;&nbsp;&nbsp;&nbsp;"+obj['rent_way']+"</span>"+

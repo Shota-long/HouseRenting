@@ -60,7 +60,7 @@
         	<label class="sr-only">确认密码</label>
         	<input type="password" id="inputConfirmPassword" name="confirmPassword"class="form-control" placeholder="Confirm Password" required>
 			<span id="tishi"></span>
-	
+		
        		<br/>
        		<label class="sr-only">电话号码</label>
         	<input type="text" id="inputTelephone" name="telephone" class="form-control" placeholder="Telephone" required>
@@ -85,30 +85,37 @@
 		$("input[name='username']").blur(verifUsername)
 	});
 	function verifUsername(){
-		$.ajax({
-			url:encodeURI("${pageContext.request.contextPath}/UserAction_verifUsername"),
-			type:"post",
-			cache:false,
-			data:{
-				username:$("input[name='username']").val()
-			},
-			//cache:false,
-			dataType:'json',
-			success:function(msg){
-				if(msg.isSuccess){
-					
-					$("#msg").html("<font color='red'>用户名重复</font>");
-					$("#button").attr("disabled","disabled");
+		 var name = document.getElementById("inputUsername").value;
+		if(name==null||name==""){
+			$("#msg").html("<font color='red'>用户名不能为空</font>");
+			$("#button").attr("disabled","disabled");
+		}
+		else{
+			$.ajax({
+				url:encodeURI("${pageContext.request.contextPath}/UserAction_verifUsername"),
+				type:"post",
+				cache:false,
+				data:{
+					username:$("input[name='username']").val()
+				},
+				//cache:false,
+				dataType:'json',
+				success:function(msg){
+					if(msg.isSuccess){
+						
+						$("#msg").html("<font color='red'>用户名重复</font>");
+						$("#button").attr("disabled","disabled"); //红色提示不可点击button
+					}
+					else{
+						
+						$("#msg").html("<font color='green'>用户名可用</font>");
+						$("#button").removeAttr("disabled");
+						
+					}
+						
 				}
-				else{
-					
-					$("#msg").html("<font color='green'>用户名可用</font>");
-					$("#button").removeAttr("disabled");
-					
-				}
-					
-			}
-		});
+			});
+		}
 	}
 	</script> 
 	

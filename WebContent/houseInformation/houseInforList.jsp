@@ -36,8 +36,21 @@ a{
 
 a:hover {
 	color: red;
-	text-decoration: underline;
+	text-decoration: none;
 }
+
+div.overflow{
+	overflow: hidden;  /* 额外部分隐藏*/
+}
+
+img{  
+  cursor: pointer;  
+  transition: all 0.5s; /* 所有的属性变化在0.5s的时间段内完成 */
+}  
+
+img:hover{  
+  transform: scale(1.2); /* 鼠标放到图片上的时候图片按比例放大1.5倍   */
+} 
 </style>
 </head>
 <body>
@@ -154,8 +167,8 @@ function addBox(resultList){
 				"<hr>"+
 				"<div class='container-fluid'>"+
 				 "<div class='row-fluid'>"+
-				 	"<div class='col-lg-2 center' >"+
-				 		"<a href='#' class = 'img-responsive'>"+
+				 	"<div class='col-lg-2 center' class='overflow'>"+
+				 		"<a href='houseInfor.jsp?house_id="+obj['house_id']+"' class='img-responsive'>"+
 				 		"<img src="+picSrc+" class='img-responsive'>"+
 				 		"</a>"+
 				 	"</div>"+

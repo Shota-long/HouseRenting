@@ -7,14 +7,20 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="0">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<style type="text/css">
+.navbar{
+    background-color: white;
+    outline: none;
+}
+</style>
 </head>
 <body>
-<div >
-	<nav class="navbar navbar-default" role="navigation">
-    	<div>
+<div class="layui-layout layui-layout-admin">
+	<nav class="navbar navbar-default" role="navigation" class="navbar-fixed-top">
+    	<div class="container-fluid">
      		<ul class="nav navbar-nav">
             	<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
-            	<li ><a id="location">未知城市</a></li>
+            	<li ><a id="location">全国</a></li>
             	<li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                             切换城市
@@ -46,8 +52,8 @@
                                                             个人中心
                     <b class="caret"></b>
                 	</a>
-              		<ul class="dropdown-menu">
-                		<li><a href="#">个人中心</a></li>
+              		<ul class="dropdown-menu" style="min-width:100%;">
+                		<li><a href="${pageContext.request.contextPath}/User/personalCenter.jsp">个人中心</a></li>
                 		<li class="divider" ></li>
                 	    <li><a href="#" >我的账户</a></li>
                 	    <li class="divider" ></li>
@@ -70,7 +76,7 @@
                                                                        帮助中心
                     	<b class="caret"></b>
                 	</a>
-                	<ul class="dropdown-menu">
+                	<ul class="dropdown-menu" style="min-width:100%;">
                     	<li><a href="#">网站建议</a></li>
                     	<li class="divider"></li>
                     	<li><a href="#">客户举报</a></li>
@@ -80,7 +86,6 @@
   		</div>
 	</nav>
 </div>
-
 <script type="text/javascript">
 	window.onload = function() { //页面加载完成执行该方法
 		$.ajax({
@@ -91,6 +96,7 @@
 		if(login_name!=null && login_name != ""){
 			$("#login").html("<a>${login_name}</a>");
 			$("#register").html("<a href='${pageContext.request.contextPath}/index.jsp' onclick='exit()'>退出</a>");
+			//$("#register").html("<a :href='+window.location.href+'.html'' onclick='exit()'>退出</a>");
 		}
 		else{
 			$("#login").html("<a href='${pageContext.request.contextPath}/Login/login.jsp'><span class='glyphicon glyphicon-log-in'></span> 登录</a>");
