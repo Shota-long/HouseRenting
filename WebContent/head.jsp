@@ -66,13 +66,6 @@
             	</li>
             	<li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="50">
-                                                                           商家中心
-                   		 <b class="caret"></b>
-                	</a>
-                	
-           		</li>
-            	<li class="dropdown">
-                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="50">
                                                                        帮助中心
                     	<b class="caret"></b>
                 	</a>

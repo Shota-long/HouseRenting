@@ -34,23 +34,23 @@
 <body>
 <div>
 	<form action="uploadPicAction_uploadPic" method="post" enctype="multipart/form-data">
-		<input type="file" id="file" name="file" accept="image/*">
+		<input type="file" id="file" name="file" accept="image/*" multiple>
 		<input type="submit" value="提交">
 	</form>
 </div>
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081811.jpg" class="img-responsive"/></div>
-        <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081812.jpg" class="img-responsive"/></div>
-        <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081814.jpg" class="img-responsive"/></div>
-		<div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081815.jpg" class="img-responsive"/></div>
-        <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081816.jpg" class="img-responsive"/></div>
-        <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081817.jpg" class="img-responsive"/></div>    
-    </div>
-    <!-- 如果需要导航按钮 -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-</div>
+<!-- <div class="swiper-container"> -->
+<!--     <div class="swiper-wrapper"> -->
+<!--         <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081811.jpg" class="img-responsive"/></div> -->
+<!--         <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081812.jpg" class="img-responsive"/></div> -->
+<!--         <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081814.jpg" class="img-responsive"/></div> -->
+<!-- 		<div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081815.jpg" class="img-responsive"/></div> -->
+<!--         <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081816.jpg" class="img-responsive"/></div> -->
+<!--         <div class="swiper-slide" ><img src="/upload/image/2019/05/05/201905081817.jpg" class="img-responsive"/></div>     -->
+<!--     </div> -->
+<!--     如果需要导航按钮 -->
+<!--     <div class="swiper-button-prev"></div> -->
+<!--     <div class="swiper-button-next"></div> -->
+<!-- </div> -->
 <script>        
   var mySwiper = new Swiper ('.swiper-container', {
     loop: true, // 循环模式选项

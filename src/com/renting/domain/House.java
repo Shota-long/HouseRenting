@@ -1,6 +1,9 @@
 package com.renting.domain;
 
+import java.util.Date;
 import java.util.List;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class House {
 	private int house_id; //id
@@ -17,8 +20,11 @@ public class House {
 	private String address; //具体地址
 	private String description; //详细描述
 	private Double grade; //评分
-	private User user;
-	private List<Picture> picList;
+	private User user;//
+	private List<Picture> picList;//
+	@JSONField(format="yyyy-MM-dd HH:mm:ss")
+	private Date collect_time; 
+	private int flag;
 	
 	public int getHouse_id() {
 		return house_id;
@@ -117,5 +123,18 @@ public class House {
 	public void setPicList(List<Picture> picList) {
 		this.picList = picList;
 	}
+	public Date getCollect_time() {
+		return collect_time;
+	}
+	public void setCollect_time(Date collect_time) {
+		this.collect_time = collect_time;
+	}
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+	
 	
 }

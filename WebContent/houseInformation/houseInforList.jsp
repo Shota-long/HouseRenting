@@ -145,7 +145,7 @@ img:hover{
 //获取租房信息列表
 $(function(){
 	$.ajax({
-		url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo"),
+		url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo?flag=1"),
 		type:"get",
 		cache:false,
 		dataType:"json",

@@ -54,7 +54,13 @@
 	<div>
 		<jsp:include page="../head.jsp"></jsp:include>
 	</div>
-	<div id="title" class="left" style="font-size: 20pt;">总统套房，环境优美，欢迎入住</div>
+	<div class="container-fuild">
+			<div id="title" class="left" style="font-size: 20pt;">总统套房，环境优美，欢迎入住</div>
+			<div style="float:right;">
+			<span id="star" class="glyphicon glyphicon-star-empty" style="font-size: 25px;color: #2894FF;" onclick="toStar()"></span>
+			<span id="star_content">加入收藏</span>
+			</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
@@ -78,7 +84,7 @@
   			<div class="col-lg-5">
   				<br/>
   				<br/>
-  				<div><span style="font-weight: bold;">租房金额：</span><h1 style="display: inline;" id="price">1000</h1>元/月 </div>
+  				<div><span style="font-weight: bold;">租房金额：</span><h1 style="display: inline;" id="price"></h1>元/月 </div>
   				<div class="top"><span style="font-weight: bold;">押金方式：</span><span id="deposit_way"></span></div>
   				<div class="top"><span style="font-weight: bold;">房屋类型：</span><span id="type"></span></div>
   				<div class="top"><span style="font-weight: bold;">房屋面积：</span><span id="area1"></span></div>
@@ -118,6 +124,25 @@ $(function name() {
 		}
 	});
 	setTimeout("photo()",1000);
+	if("${login_name}"!=""){
+		$.ajax({
+			url:encodeURI("${pageContext.request.contextPath}/CollectionAction_findCollection"),
+			cache:false,
+			type:"post",
+			data:{"house_id":houseId,"login_name":"${login_name}"},
+			//dataType:"json",
+			//contentType:"application/json;charset=utf-8",
+			success:function(data){
+				if (data == "exist") {
+					$("#star").removeClass("glyphicon glyphicon-star-empty");
+					$("#star").addClass("glyphicon glyphicon-star");
+					document.getElementById("star_content").innerHTML="取消收藏";
+					document.getElementById("star_content").style.color = "#2894FF";
+				}
+			}
+		});
+	}
+	
 });
 //获取house_id
 function GetQueryString(name)
@@ -299,6 +324,65 @@ function photo(){
      		imgBig.src=this.src;   //小图片地址代替大图片地址
      	}
     }
+}
+
+function toStar() {
+	var houseId = GetQueryString("house_id");
+	if ("${login_name}"=="") {
+		window.open("${pageContext.request.contextPath}/Login/login.jsp");
+	}
+	else{
+		if (document.getElementById("star").className == "glyphicon glyphicon-star-empty") {
+			
+			$.ajax({
+				url:encodeURI("${pageContext.request.contextPath}/CollectionAction_addCollection"),
+				cache:false,
+				type:"post",
+				data:{"house_id":houseId,"login_name":"${login_name}"},
+				//dataType:"json",
+				//contentType:"application/json;charset=utf-8",
+				success:function(data){
+					if (data == "addSuccess") {
+						$("#star").removeClass("glyphicon glyphicon-star-empty");
+						$("#star").addClass("glyphicon glyphicon-star");
+						document.getElementById("star_content").innerHTML="取消收藏";
+						document.getElementById("star_content").style.color = "#2894FF";
+					}
+				}
+			});
+			/*
+			$("#star").removeClass("glyphicon glyphicon-star-empty");
+			$("#star").addClass("glyphicon glyphicon-star");
+			document.getElementById("star_content").innerHTML="取消收藏";
+			document.getElementById("star_content").style.color = "#2894FF";
+			*/
+		}
+		else if (document.getElementById("star").className == "glyphicon glyphicon-star") {
+			
+			$.ajax({
+				url:encodeURI("${pageContext.request.contextPath}/CollectionAction_deleteCollection"),
+				cache:false,
+				type:"post",
+				data:{"house_id":houseId,"login_name":"${login_name}"},
+				//dataType:"json",
+				//contentType:"application/json;charset=utf-8",
+				success:function(data){
+					if (data == "delSuccess") {
+						$("#star").removeClass("glyphicon glyphicon-star");
+						$("#star").addClass("glyphicon glyphicon-star-empty");
+						document.getElementById("star_content").innerHTML="加入收藏";
+						document.getElementById("star_content").style.color = "black";
+					}
+				}
+			});
+			/*
+			$("#star").removeClass("glyphicon glyphicon-star");
+			$("#star").addClass("glyphicon glyphicon-star-empty");
+			document.getElementById("star_content").innerHTML="加入收藏";
+			document.getElementById("star_content").style.color = "black";
+			*/
+		}
+	}
 }
 </script>
 </body>

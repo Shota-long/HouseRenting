@@ -29,15 +29,12 @@ a:hover {
 a{
 	text-decoration: none;
 }
-.navbar{
-    background-color: black;
-}
 </style>
 
 </head>
 <body>
 <div class="layui-layout layui-layout-admin"> 
- <div class="layui-header layui-bg-black">
+ <div class="layui-header">
 	<jsp:include page="../head.jsp"></jsp:include>
 </div>
   <div class="layui-side layui-bg-black">
@@ -55,6 +52,7 @@ a{
         <li class="layui-nav-item"><a href="javascript:funcShow(3);;">我的收藏</a></li>
         <li class="layui-nav-item"><a href="javascript:funcShow(4);;">我的浏览</a></li>
         <li class="layui-nav-item"><a href="javascript:funcShow(5);;">我的评价</a></li>
+        <li class="layui-nav-item"><a href="javascript:funcShow(6);;">发布信息</a></li>
       </ul>
     </div>
   </div>
@@ -72,7 +70,7 @@ layui.use('element', function(){
 function funcShow(id){
 	switch(id){
 	case 0:
-		path = "../index.jsp";
+		
 		break;
 	case 1:
 		
@@ -81,7 +79,18 @@ function funcShow(id){
 		
 		break;
 	case 3:
+		path = "Collection.jsp";
+		break;
+	
+	case 4:
 		
+		break;
+	
+	case 5:
+		
+		break;
+	case 6:
+		path = "addHouseInfor.jsp";
 		break;
 	}
 	$("#content").load(path);

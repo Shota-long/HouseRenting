@@ -5,8 +5,11 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.junit.Test;
 
 import com.renting.domain.House;
 import com.renting.domain.Picture;
@@ -106,5 +109,39 @@ public class HouseDao {
 		}
 		
 	}
+	@Test
+	public void addHouseInfo(String[] split) {
+		Session session = HibernateUtil.getCurrentSession();
+		//Transaction transaction = session.beginTransaction();
+		String sql = "insert into houseinfo_table(user_id,title,location,price,deposit_way,rent_way,type,area,decoration,floor,address,description,grade,flag) select u.user_id,?,?,?,?,?,?,?,?,?,?,?,?,? from user_table u where u.username=?";
+		NativeQuery query = session.createSQLQuery(sql);
+		
+		query.setParameter(1, split[0]);
+		query.setParameter(2, split[8]);
+		query.setParameter(3, Integer.parseInt(split[1]));
+		query.setParameter(4, split[2]);
+		query.setParameter(5, split[3]);
+		query.setParameter(6, split[4]);
+		query.setParameter(7, Integer.parseInt(split[5]));
+		query.setParameter(8, split[6]);
+		query.setParameter(9, Integer.parseInt(split[7]));
+		query.setParameter(10, split[9]);
+		query.setParameter(11, split[10]);
+		query.setParameter(12, 10);
+		query.setParameter(13, 0);
+		query.setParameter(14, split[11]);
+	
+		int update = query.executeUpdate();
+		//transaction.commit();
+		System.out.println(update);
+		//return update;
+		if(update==1) {
+			System.out.println("插入成功");
+		}
+		else {
+			System.out.println("插入失败");
+		}
+	}
+	
 	
 }

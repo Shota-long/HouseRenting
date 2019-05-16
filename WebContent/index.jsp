@@ -136,7 +136,7 @@ a:hover {
 <script type="text/javascript">
 	$(function() { //页面加载完成执行该方法
 		$.ajax({
-			url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo"),
+			url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo?flag=1"),
 			type:"post",
 			cache:false,
 			dataType:"json",

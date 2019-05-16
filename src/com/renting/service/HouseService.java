@@ -15,7 +15,7 @@ import com.renting.utils.HibernateUtil;
 
 public class HouseService {
 
-	public List<House> findHouseInfo(String house_id,String location, String minprice1,String maxprice1, String type, String rent_way, String decoration) {
+	public List<House> findHouseInfo(String house_id,String location, String minprice1,String maxprice1, String type, String rent_way, String decoration,String flag) {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		//创建建立一个DetachedCriteria对象，将查询的条件等指定好
@@ -53,6 +53,21 @@ public class HouseService {
 		if(decoration != null && decoration != "") {
 			dc.add(Restrictions.eq("decoration", decoration));
 		}
+		if(flag != null && flag != "") {
+			int FLG = Integer.parseInt(flag);
+			if(FLG == 0 ) {
+				//System.out.println("flag="+flag);
+				dc.add(Restrictions.eq("flag", 0));
+			}
+			else if(FLG == 1 ) {
+				//System.out.println("flag="+flag);
+				dc.add(Restrictions.eq("flag", 1));
+			}
+			else if(FLG == 2 ) {
+				//System.out.println("flag="+flag);
+				dc.add(Restrictions.eq("flag", 2));
+			}
+		}
 		
 		dc.addOrder(Order.desc("grade"));
 		//注入持久层
@@ -62,5 +77,15 @@ public class HouseService {
 		transaction.commit();
 		session.close();
 		return resultList;
+	}
+
+	public void addHouseInfo(String[] split) {
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		HouseDao house_dao = new HouseDao();
+		house_dao.addHouseInfo(split);
+		transaction.commit();
+		session.close();
+		
 	}
 }

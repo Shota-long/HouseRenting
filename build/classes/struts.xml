@@ -20,5 +20,8 @@
 		<action name="uploadPicAction_*" class="com.renting.web.uploadPicAction" method="{1}">
 		</action>
 		<action name="LocationAction_*" class="com.renting.web.LocationAction" method="{1}"></action>
+		<action name="CollectionAction_*" class="com.renting.web.CollectionAction" method="{1}">
+			<result name="test">/test/test.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -27,6 +27,16 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 	ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 	House house = (House) ac.getBean("house");
 	
+	private String houseArray;
+
+	public String getHouseArray() {
+		return houseArray;
+	}
+
+	public void setHouseArray(String houseArray) {
+		this.houseArray = houseArray;
+	}
+	
 	@Test
 	public void findHouseInfo() throws IOException {
 		System.out.println("/////////////////////////执行action");
@@ -38,17 +48,28 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 		String type = ServletActionContext.getRequest().getParameter("type"); //房屋类型
 		String rent_way = ServletActionContext.getRequest().getParameter("rent_way"); //出租方式
 		String decoration = ServletActionContext.getRequest().getParameter("decoration"); //装修情况
-		System.out.println("house_id:"+house_id+",location:"+location+",minprice:"+minprice+",type:"+type+",rent_way:"+rent_way+",decoration:"+decoration);
+		String flag = ServletActionContext.getRequest().getParameter("flag");
+		System.out.println("house_id:"+house_id+",location:"+location+",minprice:"+minprice+",type:"+type+",rent_way:"+rent_way+",decoration:"+decoration+"flag:"+flag);
 		HouseService houseService = new HouseService();
-		List<House> result = houseService.findHouseInfo(house_id,location,minprice,maxprice,type,rent_way,decoration);
+		List<House> result = houseService.findHouseInfo(house_id,location,minprice,maxprice,type,rent_way,decoration,flag);
 		//通过json传递数据
 		String json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
-		System.out.println("json:"+json);
+		//System.out.println("json:"+json);
 		PrintWriter writer = ServletActionContext.getResponse().getWriter();
 		writer.write(json);
 		writer.flush();
 		writer.close();
 	}
+	
+	public void addHouseInfo() {
+		String[] split = houseArray.split(",");
+//		for (String string : split) {
+//			System.out.println(string);
+//		}
+		HouseService houseService = new HouseService();
+		houseService.addHouseInfo(split);
+	}
+	
 	@Override
 	public House getModel() {
 		// TODO Auto-generated method stub
