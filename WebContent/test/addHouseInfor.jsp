@@ -65,7 +65,7 @@ div.left {
 		<span style="font-size: 23px; color: #FFA500;">发布租房信息</span>
 	</div>
 	<hr/>
-	<form action="${pageContext.request.contextPath}/HouseAction_addHouseInfo?" method="post" enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath}/TestAction_getContent?" method="post" enctype="multipart/form-data">
 	<div class='left'><span style="font-size: 20px;"><b>基本信息</b></span></div>
 	<div class="container-fluid left">
 		<div class="row" style="margin: 10px;">
@@ -185,7 +185,7 @@ div.left {
 		<div>
 			<span class="btn btn-success fileinput-button">
 				<span>选择图片</span>
-				<input type="file" id="file" name="file" accept="image/*" onclick="addImg(this)" multiple="multiple">
+				<input type="file" id="file" name="file" accept="image/*" onclick="addImg(this)">
 			</span>		 
 		</div>
 	</div>
@@ -216,7 +216,7 @@ div.left {
 			//当文件读取成功时执行函数
 			reader.onload = function(e) {  // 读取操作成功时触发
 				console.log(this.fileName);
-				//$("#box").html("");
+				$("#box").html("");
 				$("#box").append(
 					"<div style=' display: inline-block;'>"+
 					"<img src='"+this.result+"' alt='"+this.fileName+"' class='subPic' hspace='5'/>"+
@@ -257,7 +257,7 @@ function addInfo() {
 	house[10] = description;
 	house[11] = "${login_name}";
 	var f = document.getElementsByTagName("form")[0];
-	f.action=f.action+"houseArray="+house;
+	f.action=f.action+"house="+house;
 // 	$.ajax({
 // 		url:encodeURI("${pageContext.request.contextPath}/HouseAction_addHouseInfo?houseArray="+house),
 // 		type:"post",

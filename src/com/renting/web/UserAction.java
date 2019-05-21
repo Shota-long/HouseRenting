@@ -21,6 +21,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserAction extends ActionSupport implements ModelDriven<User>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 	User user = (User) ac.getBean("user");
 

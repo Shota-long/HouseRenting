@@ -8,7 +8,7 @@ public class Picture {
 	private String fileFileName;//文件名
 	private String fileContentType;//文件类型
 	private String filePath;
-	private int house_id;
+	private String house_id;
 	
 	public String getFilePath() {
 		return filePath;
@@ -34,11 +34,12 @@ public class Picture {
 	public void setFileContentType(String fileContentType) {
 		this.fileContentType = fileContentType;
 	}
-	public int getHouse_id() {
+	public String getHouse_id() {
 		return house_id;
 	}
-	public void setHouse_id(int house_id) {
+	public void setHouse_id(String house_id) {
 		this.house_id = house_id;
 	}
+	
 	
 }

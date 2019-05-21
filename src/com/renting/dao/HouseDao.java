@@ -1,5 +1,7 @@
 package com.renting.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -109,11 +111,16 @@ public class HouseDao {
 		}
 		
 	}
-	@Test
-	public void addHouseInfo(String[] split) {
+	
+	public int addHouseInfo(String[] split, String house_id) {
 		Session session = HibernateUtil.getCurrentSession();
 		//Transaction transaction = session.beginTransaction();
-		String sql = "insert into houseinfo_table(user_id,title,location,price,deposit_way,rent_way,type,area,decoration,floor,address,description,grade,flag) select u.user_id,?,?,?,?,?,?,?,?,?,?,?,?,? from user_table u where u.username=?";
+		//获取当前系统时间
+		Date data = new Date();// new Date()为获取当前系统时间
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String time = df.format(data);
+	
+		String sql = "insert into houseinfo_table(user_id,title,location,price,deposit_way,rent_way,type,area,decoration,floor,address,description,grade,flag,house_id,date) select u.user_id,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? from user_table u where u.username=?";
 		NativeQuery query = session.createSQLQuery(sql);
 		
 		query.setParameter(1, split[0]);
@@ -129,18 +136,27 @@ public class HouseDao {
 		query.setParameter(11, split[10]);
 		query.setParameter(12, 10);
 		query.setParameter(13, 0);
-		query.setParameter(14, split[11]);
+		query.setParameter(14, house_id);
+		query.setParameter(15, time);
+		query.setParameter(16, split[11]);
 	
 		int update = query.executeUpdate();
 		//transaction.commit();
-		System.out.println(update);
-		//return update;
-		if(update==1) {
-			System.out.println("插入成功");
-		}
-		else {
-			System.out.println("插入失败");
-		}
+		return update;
+		
+	}
+	@Test
+	public List<House> findPublishInfo(String houseOwner, String flag) {
+		
+		Session session = HibernateUtil.getCurrentSession();
+		//session.beginTransaction();
+		String hql = "select h from House h , User u where h.user_id = u.uid and u.username=:name AND h.flag =:flag ORDER BY h.date desc";
+		Query query = session.createQuery(hql);
+		query.setParameter("name", houseOwner);
+		query.setParameter("flag", Integer.parseInt(flag));
+		List<House> resultList = query.getResultList();
+		//System.out.println(resultList.get(0).getHouse_id());
+		return resultList;
 	}
 	
 	

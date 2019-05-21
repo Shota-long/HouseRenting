@@ -6,20 +6,29 @@ import java.util.Calendar;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import com.opensymphony.xwork2.Action;
 import com.renting.dao.uploadPicDao;
 import com.renting.domain.Picture;
+import com.renting.utils.HibernateUtil;
 
 public class uploadPicService {
 
-	public void uploadPic( Picture picture) {
+	public void uploadPic( String house_id, Picture picture) {
 		
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
 		File file = picture.getFile();
 		String fileFileName = picture.getFileFileName();
 		String[] getPath = getPath();
 		String realPath = getPath[0];
 		String savePath = getPath[1];
-		System.out.println(realPath);
+		System.out.println("file="+file);
+		System.out.println("fileFileName="+fileFileName);
+		System.out.println("realPath:"+realPath);
 		System.out.println("savePath："+savePath);
 		picture.setFilePath(savePath);		
 		String names[] = fileFileName.split("\\.");
@@ -33,7 +42,10 @@ public class uploadPicService {
 			try {
 				FileUtils.copyFile(file, new File(new File(realPath),fileName));
 				uploadPicDao uploadDao = new uploadPicDao();
+				picture.setHouse_id(house_id);
 				uploadDao.uploadPic(picture);
+				transaction.commit();
+				session.close();
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -90,5 +102,4 @@ public class uploadPicService {
 		path[1] = save_filePath;
 		return path;
 	}
-	
 }

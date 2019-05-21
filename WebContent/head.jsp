@@ -47,23 +47,7 @@
         	<ul class="nav navbar-nav navbar-right">
             	<li id="login"></li>
             	<li id="register"></li>
-            	<li class="dropdown">
-                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="50">
-                                                            个人中心
-                    <b class="caret"></b>
-                	</a>
-              		<ul class="dropdown-menu" style="min-width:100%;">
-                		<li><a href="${pageContext.request.contextPath}/User/personalCenter.jsp">个人中心</a></li>
-                		<li class="divider" ></li>
-                	    <li><a href="#" >我的账户</a></li>
-                	    <li class="divider" ></li>
-                	    <li><a href="#">我的浏览</a></li>
-                	    <li class="divider"></li>
-                    	<li><a href="#">我的收藏</a></li>
-                    	<li class="divider"></li>
-                    	<li><a href="#">我的举报</a></li>
-               		</ul>
-            	</li>
+                <li><a href="${pageContext.request.contextPath}/User/personalCenter.jsp">个人中心</a></li>
             	<li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="50">
                                                                        帮助中心

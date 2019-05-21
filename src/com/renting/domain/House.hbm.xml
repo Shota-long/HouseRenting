@@ -5,8 +5,8 @@
  <hibernate-mapping package="com.renting.domain">
  	<class name="com.renting.domain.House" table="houseInfo_table">
  		<id name="house_id" column="house_id">
- 		<!-- 主键生成策略 自动生成-->
- 			<generator class="native"></generator>
+ 		<!-- 主键生成策略 手动生成-->
+ 			<generator class="assigned"></generator>
  		</id>
  		<property name="user_id" column="user_id" ></property>
  		<property name="title" column="title" ></property>
@@ -22,6 +22,7 @@
  		<property name="description" column="description"></property>
  		<property name="grade" column="grade"></property>
  		<property name="flag" column="flag"></property>
+ 		<property name="date" column="date"></property>
  		<!--  
  		<property name="collect_time" type="java.util.Date">
  		</property>

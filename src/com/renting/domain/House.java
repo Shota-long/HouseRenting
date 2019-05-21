@@ -6,7 +6,7 @@ import java.util.List;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class House {
-	private int house_id; //id
+	private String house_id; //id
 	private String user_id;//用户id
 	private String title; //租房信息标题
 	private String location;  //所属区域
@@ -20,16 +20,18 @@ public class House {
 	private String address; //具体地址
 	private String description; //详细描述
 	private Double grade; //评分
+	private int flag; //标准
+	@JSONField(format="yyyy-MM-dd HH:mm:ss")
+	private Date date;
 	private User user;//
 	private List<Picture> picList;//
 	@JSONField(format="yyyy-MM-dd HH:mm:ss")
 	private Date collect_time; 
-	private int flag;
 	
-	public int getHouse_id() {
+	public String getHouse_id() {
 		return house_id;
 	}
-	public void setHouse_id(int house_id) {
+	public void setHouse_id(String house_id) {
 		this.house_id = house_id;
 	}
 	public String getUser_id() {
@@ -134,6 +136,12 @@ public class House {
 	}
 	public void setFlag(int flag) {
 		this.flag = flag;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

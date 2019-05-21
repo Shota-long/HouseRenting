@@ -93,8 +93,13 @@
   				<div class="top"><span style="font-weight: bold;">所属区域：</span><span id="location1"></span></div>
   				<div class="top"><span style="font-weight: bold;">具体地址：</span><span id="address"></span></div>
   				<div class="top"><span style="font-weight: bold;">所在楼层：</span><span id="floor"></span></div>
-  				<div class="top"><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;经纪人：</span><span id="username"></span></div>
-  				<div class="top"><span style="font-weight: bold;">联系电话：</span><span id="telephone"></span></div>
+  				<div class="top"><span style="font-weight: bold;">个人房主：</span><span id="username"></span></div>
+  				<!--<div class="top"><span style="font-weight: bold;">联系电话：</span><span id="telephone"></span></div> -->
+  				<div class="top">
+  					 <a class="btn btn-info btn-lg">
+          				<span class="glyphicon glyphicon-earphone"></span><span id="telephone"></span>
+        			</a>
+  				</div>
   			</div>
   		</div>
   	</div>

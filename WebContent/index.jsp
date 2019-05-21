@@ -45,7 +45,7 @@ img{
 }  
 
 img:hover{  
-  transform: scale(1.2); /* 鼠标放到图片上的时候图片按比例放大1.5倍   */
+  transform: scale(1.2); /* 鼠标放到图片上的时候图片按比例放大1.2倍   */
 }  
 
 a{

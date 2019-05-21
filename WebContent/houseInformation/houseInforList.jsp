@@ -49,14 +49,14 @@ img{
 }  
 
 img:hover{  
-  transform: scale(1.2); /* 鼠标放到图片上的时候图片按比例放大1.5倍   */
+  transform: scale(1.2); /* 鼠标放到图片上的时候图片按比例放大1.2倍   */
 } 
 </style>
 </head>
 <body>
-<div class="container-fluid">
-	<div class="row-fluid" class="clearfix">
+<div>
 	<jsp:include page="../head.jsp"></jsp:include>
+</div>
 	<!--  
 	<div class="row-fluid" class="clearfix">
 		<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"> 
@@ -77,8 +77,6 @@ img:hover{
       	<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3"></div>
     </div>
     -->
-	</div>
-</div>
 <div class="container-fluid">
 	<div class="row-fluid">
 	<div class="col-lg-12 center">
@@ -247,7 +245,7 @@ function check(){
 		cache:false,
 		dataType:"json",
 		//contentType:"application/json;charset=utf-8",
-		data:{"minprice":minprice,"maxprice":maxprice,"type":type,"rent_way":rent_way,"decoration":decoration},
+		data:{"minprice":minprice,"maxprice":maxprice,"type":type,"rent_way":rent_way,"decoration":decoration,"flag":"1"},
 		success:function(resultList){
 			addBox(resultList);
 		}

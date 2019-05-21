@@ -1,5 +1,6 @@
 package com.renting.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,15 +20,21 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.renting.domain.House;
+import com.renting.domain.Picture;
 import com.renting.service.HouseService;
 
-public class HouseAction extends ActionSupport implements ModelDriven<House> {
+public class HouseAction extends ActionSupport implements ModelDriven<Picture>{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-	House house = (House) ac.getBean("house");
+	Picture picture = (Picture) ac.getBean("picture");
 	
 	private String houseArray;
+	
 
 	public String getHouseArray() {
 		return houseArray;
@@ -36,7 +43,7 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 	public void setHouseArray(String houseArray) {
 		this.houseArray = houseArray;
 	}
-	
+
 	@Test
 	public void findHouseInfo() throws IOException {
 		System.out.println("/////////////////////////执行action");
@@ -49,7 +56,7 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 		String rent_way = ServletActionContext.getRequest().getParameter("rent_way"); //出租方式
 		String decoration = ServletActionContext.getRequest().getParameter("decoration"); //装修情况
 		String flag = ServletActionContext.getRequest().getParameter("flag");
-		System.out.println("house_id:"+house_id+",location:"+location+",minprice:"+minprice+",type:"+type+",rent_way:"+rent_way+",decoration:"+decoration+"flag:"+flag);
+		System.out.println("house_id:"+house_id+",location:"+location+",minprice:"+minprice+",type:"+type+",rent_way:"+rent_way+",decoration:"+decoration+",flag:"+flag);
 		HouseService houseService = new HouseService();
 		List<House> result = houseService.findHouseInfo(house_id,location,minprice,maxprice,type,rent_way,decoration,flag);
 		//通过json传递数据
@@ -62,18 +69,35 @@ public class HouseAction extends ActionSupport implements ModelDriven<House> {
 	}
 	
 	public void addHouseInfo() {
+		
 		String[] split = houseArray.split(",");
-//		for (String string : split) {
-//			System.out.println(string);
-//		}
+		for (String string : split) {
+			System.out.println(string);
+		}
 		HouseService houseService = new HouseService();
-		houseService.addHouseInfo(split);
+		houseService.addHouseInfo(picture,split);
+		
+	}
+	
+	public void findPublishInfo() throws IOException {
+		
+		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");//设置编码
+		String houseOwner = ServletActionContext.getRequest().getParameter("login_name");
+		String flag = ServletActionContext.getRequest().getParameter("flag");
+		HouseService houseService = new HouseService();
+		List<House> result = houseService.findPublishInfo(houseOwner,flag);
+		//通过json传递数据
+		String json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
+		//System.out.println("json:"+json);
+		PrintWriter writer = ServletActionContext.getResponse().getWriter();
+		writer.write(json);
+		writer.flush();
+		writer.close();		
 	}
 	
 	@Override
-	public House getModel() {
+	public Picture getModel() {
 		// TODO Auto-generated method stub
-		return house;
+		return picture;
 	}
-	
 }

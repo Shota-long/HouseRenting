@@ -86,7 +86,7 @@
 	});
 	function verifUsername(){
 		 var name = document.getElementById("inputUsername").value;
-		if(name==null||name==""){
+		if(name==null||name.indexOf(" ")>=0||name==""){
 			$("#msg").html("<font color='red'>用户名不能为空</font>");
 			$("#button").attr("disabled","disabled");
 		}

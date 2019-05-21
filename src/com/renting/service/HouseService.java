@@ -1,6 +1,7 @@
 package com.renting.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,7 +12,9 @@ import org.hibernate.criterion.Restrictions;
 
 import com.renting.dao.HouseDao;
 import com.renting.domain.House;
+import com.renting.domain.Picture;
 import com.renting.utils.HibernateUtil;
+import com.renting.web.uploadPicAction;
 
 public class HouseService {
 
@@ -22,7 +25,7 @@ public class HouseService {
 		DetachedCriteria dc = DetachedCriteria.forClass(House.class);
 		
 		if(house_id != null && house_id != "") {
-			dc.add(Restrictions.eq("house_id", Integer.parseInt(house_id)));
+			dc.add(Restrictions.eq("house_id", house_id));
 		}
 		
 		if(location != null && location != "") {
@@ -79,13 +82,33 @@ public class HouseService {
 		return resultList;
 	}
 
-	public void addHouseInfo(String[] split) {
+	public void addHouseInfo(Picture picture, String[] split) {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		HouseDao house_dao = new HouseDao();
-		house_dao.addHouseInfo(split);
+		String house_id = UUID.randomUUID().toString();
+		int info = house_dao.addHouseInfo(split,house_id);
+		if(info==1) {
+			System.out.println("插入成功");
+			transaction.commit();
+			uploadPicAction picAction = new uploadPicAction();
+			picAction.uploadPic(house_id,picture);
+			session.close();
+		}
+		else {
+			System.out.println("插入失败");
+			transaction.rollback();;
+			session.close();
+		}
+	}
+
+	public List<House> findPublishInfo(String houseOwner, String flag) {
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		HouseDao house_dao = new HouseDao();
+		List<House> resultList =  house_dao.findPublishInfo(houseOwner,flag);
 		transaction.commit();
 		session.close();
-		
+		return resultList;
 	}
 }

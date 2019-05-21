@@ -1,6 +1,7 @@
 package com.renting.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,9 +20,9 @@ public class CollectionService {
 		Transaction transaction = session.beginTransaction();
 		//创建建立一个DetachedCriteria对象，将查询的条件等指定好
 		CollectionDao collectDao = new CollectionDao();
-		int house_id1 = Integer.parseInt(house_id);
-		Object object = collectDao.findCollection(house_id1,username);
+		Object object = collectDao.findCollection(house_id,username);
 		if(object!=null) {
+			System.out.println("已收藏");
 			transaction.commit();
 			return true;
 		}
@@ -38,8 +39,8 @@ public class CollectionService {
 		Transaction transaction = session.beginTransaction();//开启事务
 		//创建建立一个DetachedCriteria对象，将查询的条件等指定好
 		CollectionDao collectDao = new CollectionDao();
-		int house_id1 = Integer.parseInt(house_id);
-		int object = collectDao.addCollection(house_id1,username);
+		String collect_id = UUID.randomUUID().toString();
+		int object = collectDao.addCollection(collect_id,house_id,username);
 		if(object == 1) {
 			System.out.println("添加收藏成功");
 			transaction.commit();
@@ -58,8 +59,7 @@ public class CollectionService {
 		Transaction transaction = session.beginTransaction();
 		//创建建立一个DetachedCriteria对象，将查询的条件等指定好
 		CollectionDao collectDao = new CollectionDao();
-		int house_id1 = Integer.parseInt(house_id);
-		int result = collectDao.deleteCollection(house_id1,username);
+		int result = collectDao.deleteCollection(house_id,username);
 		if(result == 1) {
 			System.out.println("删除成功");
 			transaction.commit();
