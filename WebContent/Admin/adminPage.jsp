@@ -23,7 +23,7 @@
         	管理员
         </a>
       </li>
-      <li class="layui-nav-item"><a href="">退出</a></li>
+      <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/Login/login.jsp" onclick="exit()">退出</a></li>
     </ul>
   </div>
   
@@ -32,18 +32,17 @@
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
         <li class="layui-nav-item">
-          <a class="" href="javascript:;">所有商品</a>
+          <a class="" href="javascript:;">房源管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">已发布</a></dd>
-            <dd><a href="javascript:;">待审核</a></dd>
+            <dd><a href="javascript:funcShow(0);">已发布</a></dd>
+            <dd><a href="javascript:funcShow(1);">待审核</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
-          <a href="javascript:;">解决方案</a>
+          <a href="javascript:;">用户管理</a>
           <dl class="layui-nav-child">
             <dd><a href="javascript:;">列表一</a></dd>
             <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="">超链接</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item"><a href="">云市场</a></li>
@@ -54,17 +53,39 @@
   
   <div class="layui-body">
     <!-- 内容主体区域 -->
-    <div style="padding: 15px;">内容主体区域</div>
+    <div style="padding: 15px;" id ="content" ></div>
   </div>
   
 </div>
 <script src="https://cdn.90so.net/layui/2.4.5/layui.js"></script>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script>
 	//JavaScript代码区域
 	layui.use('element', function(){
 	  var element = layui.element;
 	  
 	});
+	function funcShow(id){
+	switch(id){
+	case 0:
+		path = "publishedInfo.jsp";
+		break;
+	case 1:
+		path = "auditedInfo.jsp";
+		break;
+	}
+	$("#content").load(path);
+}
+</script>
+<script type="text/javascript">
+function exit() {
+	$.ajax({
+		url:encodeURI("${pageContext.request.contextPath}/UserAction_removeSession"),
+		type:"post",
+		cache:false
+	});
+	//window.location.reload(true);
+}
 </script>
 </body>
 </html>

@@ -173,7 +173,9 @@ div.left {
 		</div>
 		<div class="row" style="margin: 10px;">
 			<div class="col-lg-2 box" style="font-size: 15px;"><span style="color: red;">*</span><span>房源描述</span></div>
-			<div class='col-lg-6'><input id="description" type="text" class="form-control"></div>
+			<div class='col-lg-6'>
+				<textarea rows="4" cols="71" id="description" class="form-control"></textarea>
+			</div>
 		</div>
 	</div>
 	<br>

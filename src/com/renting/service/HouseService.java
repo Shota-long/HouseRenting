@@ -111,4 +111,35 @@ public class HouseService {
 		session.close();
 		return resultList;
 	}
+
+	public Object findPublishInfo(String location, String houseOwner, String flag) {
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		HouseDao house_dao = new HouseDao();
+		Object resultList =  house_dao.findPublishInfo(location,houseOwner,flag);
+		transaction.commit();
+		session.close();
+		return resultList;
+		
+	}
+
+	public int updateHouseInfo(String house_id, String flag) {
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		HouseDao house_dao = new HouseDao();
+		int result =  house_dao.updateHouseInfo(house_id,flag);
+		if(result==1) {
+			System.out.println("更新成功");
+			transaction.commit();
+			session.close();
+			return result;
+		}
+		else {
+			System.out.println("更新失败");
+			transaction.commit();
+			session.close();
+			return 0;
+		}
+		
+	}
 }

@@ -45,20 +45,20 @@ a{
           <a href="javascript:;">我的账户</a>
           <dl class="layui-nav-child">
             <dd><a href="javascript:funcShow(0);">个人资料</a></dd>
-            <dd><a href="javascript:funcShow(1);;">修改密码</a></dd>
-            <dd><a href="javascript:funcShow(2);;">消息管理</a></dd>
+            <dd><a href="javascript:funcShow(1);">修改密码</a></dd>
+            <dd><a href="javascript:funcShow(2);">消息管理</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="javascript:funcShow(3);;">我的收藏</a></li>
-        <li class="layui-nav-item"><a href="javascript:funcShow(4);;">我的浏览</a></li>
-        <li class="layui-nav-item"><a href="javascript:funcShow(5);;">我的评价</a></li>
-        <li class="layui-nav-item"><a href="javascript:funcShow(6);;">发布信息</a></li>
+        <li class="layui-nav-item"><a href="javascript:funcShow(3);">我的收藏</a></li>
+        <li class="layui-nav-item"><a href="javascript:funcShow(4);">我的浏览</a></li>
+        <li class="layui-nav-item"><a href="javascript:funcShow(5);">我的评价</a></li>
+        <li class="layui-nav-item"><a href="javascript:funcShow(6);">发布信息</a></li>
          <li class="layui-nav-item">
           <a href="javascript:;">我的发布</a>
           <dl class="layui-nav-child">
             <dd><a href="javascript:funcShow(7);">已发布</a></dd>
-            <dd><a href="javascript:funcShow(8);;">待审核</a></dd>
-            <dd><a href="javascript:funcShow(9);;">已出租</a></dd>
+            <dd><a href="javascript:funcShow(8);">待审核</a></dd>
+            <dd><a href="javascript:funcShow(9);">已出租</a></dd>
           </dl>
         </li>
       </ul>

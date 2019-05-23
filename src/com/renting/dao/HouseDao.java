@@ -13,6 +13,8 @@ import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.renting.domain.House;
 import com.renting.domain.Picture;
 import com.renting.domain.User;
@@ -102,7 +104,7 @@ public class HouseDao {
 				list.setUser(user);
 				list.setPicList(picListResult);
 			}
-			System.out.println(resultList.get(0).getPicList().get(0).getFilePath());
+			//System.out.println(resultList.get(0).getPicList().get(0).getFilePath());
 			return resultList;
 		}
 		else {
@@ -145,19 +147,79 @@ public class HouseDao {
 		return update;
 		
 	}
-	@Test
+
 	public List<House> findPublishInfo(String houseOwner, String flag) {
 		
 		Session session = HibernateUtil.getCurrentSession();
 		//session.beginTransaction();
-		String hql = "select h from House h , User u where h.user_id = u.uid and u.username=:name AND h.flag =:flag ORDER BY h.date desc";
-		Query query = session.createQuery(hql);
-		query.setParameter("name", houseOwner);
-		query.setParameter("flag", Integer.parseInt(flag));
-		List<House> resultList = query.getResultList();
-		//System.out.println(resultList.get(0).getHouse_id());
+			String hql = "select h from House h , User u where h.user_id = u.uid and u.username=:name AND h.flag =:flag ORDER BY h.date desc";
+			Query query = session.createQuery(hql);
+			query.setParameter("name", houseOwner);
+			query.setParameter("flag", Integer.parseInt(flag));
+			List<House> resultList = query.getResultList();
+			//System.out.println(resultList.get(0).getHouse_id());
+			return resultList;
+		
+	}
+	
+	public Object findPublishInfo(String location , String houseOwner , String flag) {
+	
+		String hql = null;
+		Query query;
+		Session session = HibernateUtil.getCurrentSession();
+		//session.beginTransaction();
+		if(location == "" && houseOwner != null) {  //只根据房主查询
+			hql = "select h.house_id,h.title,u.uid,u.username,h.date from House h INNER JOIN User u ON h.user_id = u.uid AND u.username = :owner AND h.flag=:flag ORDER BY date desc"; 
+			query = session.createQuery(hql);
+			query.setParameter("owner", houseOwner);
+			query.setParameter("flag", Integer.parseInt(flag));
+		}
+		else if(location != null && houseOwner == ""){ //只根据区域查询
+			hql = "select h.house_id,h.title,u.uid,u.username,h.date from House h INNER JOIN User u ON h.user_id = u.uid AND h.location = :location  AND h.flag=:flag ORDER BY date desc"; 
+			query = session.createQuery(hql);
+			query.setParameter("location", location);
+			query.setParameter("flag", Integer.parseInt(flag));
+		}
+		else if(location != null && houseOwner != null){  //根据两者查询
+			hql = "select h.house_id,h.title,u.uid,u.username,h.date from House h INNER JOIN User u ON h.user_id = u.uid AND u.username = :owner and h.location = :location AND h.flag=:flag ORDER BY date desc";
+			query = session.createQuery(hql);
+			query.setParameter("owner", houseOwner);
+			query.setParameter("location", location);
+			query.setParameter("flag", Integer.parseInt(flag));
+		}
+		else {
+			hql = "select h.house_id,h.title,u.uid,u.username,h.date from House h INNER JOIN User u ON h.user_id = u.uid AND h.flag=:flag ORDER BY date desc";
+			query = session.createQuery(hql);
+			query.setParameter("flag", Integer.parseInt(flag));
+		}
+		Object resultList = query.getResultList();
 		return resultList;
 	}
+	@Test
+	public int updateHouseInfo(String house_id , String flag) {
+		
+		Session session = HibernateUtil.getCurrentSession();
+		//Transaction transaction = session.beginTransaction();
+		String hql = "update House h set h.flag = :flag where h.house_id = :house_id";
+		Query query = session.createQuery(hql);
+		query.setParameter("flag", Integer.parseInt(flag));
+		query.setParameter("house_id", house_id);
+		int update = query.executeUpdate();
+		//transaction.commit();
+		System.out.println(update);
+		return update;
+	}
+	
+	/*
+	 * @Test public void test() {
+	 * 
+	 * Session session = HibernateUtil.getCurrentSession();
+	 * session.beginTransaction(); String sql =
+	 * "select * from houseinfo_table h INNER JOIN user_table u ON h.user_id = u.user_id AND u.username = 'John' and h.location = '赤峰市松山区' AND h.flag=1"
+	 * ; NativeQuery query = session.createSQLQuery(sql); Object resultList =
+	 * query.getResultList(); String json = JSON.toJSONString(resultList);
+	 * System.out.println(json); }
+	 */
 	
 	
 }

@@ -30,12 +30,23 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 
 	public String login() throws Exception {
 		UserService user_service = new UserService();
-		boolean success = user_service.findUser(user);
-		if(success) {
+		User temp = user_service.findUser(user);
+		if(temp != null) {
 			System.out.println("success");
-			ActionContext.getContext().getSession().put("login_name", user.getUsername());
-			System.out.println(ActionContext.getContext().getSession().get("login_name"));
-			return "toIndex";
+			System.out.println("权限："+temp.getAuthority());
+			if(temp.getAuthority().trim().equals("0")) {
+				ActionContext.getContext().getSession().put("login_name", "管理员");
+				System.out.println(ActionContext.getContext().getSession().get("login_name"));
+				return "toAdmin";
+			}
+			else if(temp.getAuthority().trim().equals("2")) {
+				ActionContext.getContext().getSession().put("login_name", user.getUsername());
+				System.out.println(ActionContext.getContext().getSession().get("login_name"));
+				return "toIndex";
+			}
+			else
+				return null;
+			
 		}
 		else {
 			System.out.println("fail");

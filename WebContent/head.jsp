@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
-<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
-<META HTTP-EQUIV="expires" CONTENT="0">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <META HTTP-EQUIV="pragma" CONTENT="no-cache">  -->
+<!-- <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">  -->
+<!-- <META HTTP-EQUIV="expires" CONTENT="0"> -->
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
 <style type="text/css">
 .navbar{
     background-color: white;
     outline: none;
 }
 </style>
-</head>
-<body>
+<!-- </head> -->
+<!-- <body> -->
 <div class="layui-layout layui-layout-admin">
 	<nav class="navbar navbar-default" role="navigation" class="navbar-fixed-top">
     	<div class="container-fluid">
@@ -76,8 +76,8 @@
 			//$("#register").html("<a :href='+window.location.href+'.html'' onclick='exit()'>退出</a>");
 		}
 		else{
-			$("#login").html("<a href='${pageContext.request.contextPath}/Login/login.jsp'><span class='glyphicon glyphicon-log-in'></span> 登录</a>");
-			$("#register").html("<a href='${pageContext.request.contextPath}/Login/register.jsp'><span class='glyphicon glyphicon-user'></span> 注册</a>");
+			$("#login").html("<a href='${pageContext.request.contextPath}/Login/login.jsp' target='_blank'><span class='glyphicon glyphicon-log-in'></span> 登录</a>");
+			$("#register").html("<a href='${pageContext.request.contextPath}/Login/register.jsp' target='_blank'><span class='glyphicon glyphicon-user'></span> 注册</a>");
 		}
 		if(addre != null && addre != ""){
 			document.getElementById("location").innerHTML = addre;
@@ -124,10 +124,10 @@
 			type:"post",
 			cache:false
 		});
-		window.location.reload(true);
+		//window.location.reload(true);
 	}
 </script>
 <!-- 城市三级联动 -->
 <script src="https://cdn.bootcss.com/distpicker/2.0.3/distpicker.js"></script>
-</body>
-</html>
+<!-- </body> -->
+<!-- </html> -->

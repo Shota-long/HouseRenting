@@ -16,7 +16,7 @@ import com.renting.utils.HibernateUtil;
 
 public class UserService {
 
-	public boolean findUser(User user) {
+	public User findUser(User user) {
 		Session session = HibernateUtil.getCurrentSession();//获取session
 		Transaction transaction = session.beginTransaction();//开启事务
 		UserDao user_dao = new UserDao();
@@ -25,7 +25,7 @@ public class UserService {
 		User temp = user_dao.findUser(user);
 		transaction.commit(); //提交事务
 		session.close();	//关闭session
-		return temp == null? false:true;
+		return temp;
 	}
 	
 	public boolean addUser(User user) {
@@ -61,6 +61,7 @@ public class UserService {
 
 	public void removeSession() {
 		//清除session
+		System.out.println("清空用户名");
 		ActionContext.getContext().getSession().remove("login_name");
 	}
 

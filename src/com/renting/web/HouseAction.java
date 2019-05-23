@@ -61,7 +61,7 @@ public class HouseAction extends ActionSupport implements ModelDriven<Picture>{
 		List<House> result = houseService.findHouseInfo(house_id,location,minprice,maxprice,type,rent_way,decoration,flag);
 		//通过json传递数据
 		String json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
-		//System.out.println("json:"+json);
+		System.out.println("json:"+json);
 		PrintWriter writer = ServletActionContext.getResponse().getWriter();
 		writer.write(json);
 		writer.flush();
@@ -81,20 +81,44 @@ public class HouseAction extends ActionSupport implements ModelDriven<Picture>{
 	
 	public void findPublishInfo() throws IOException {
 		
+		String json = null;
 		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");//设置编码
-		String houseOwner = ServletActionContext.getRequest().getParameter("login_name");
-		String flag = ServletActionContext.getRequest().getParameter("flag");
 		HouseService houseService = new HouseService();
-		List<House> result = houseService.findPublishInfo(houseOwner,flag);
-		//通过json传递数据
-		String json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
-		//System.out.println("json:"+json);
+		if(ServletActionContext.getRequest().getParameter("login_name").equals("管理员")) {
+			String houseOwner = ServletActionContext.getRequest().getParameter("houseOwner");
+			String location = ServletActionContext.getRequest().getParameter("location");
+			String flag = ServletActionContext.getRequest().getParameter("flag");
+			Object object = houseService.findPublishInfo(location,houseOwner,flag);
+			//String object2 = JSON.toJSONStringWithDateFormat(object, "yyyy-MM-dd hh:mm:ss", new SerializerFeature[0]);
+			json = JSON.toJSONString(object,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
+			System.out.println("houseOwner="+houseOwner+"location="+location+"flag="+flag);
+		}
+		else {
+			String houseOwner = ServletActionContext.getRequest().getParameter("login_name");
+			String flag = ServletActionContext.getRequest().getParameter("flag");
+			List<House> result = houseService.findPublishInfo(houseOwner,flag);
+			//通过json传递数据
+			json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
+		
+		}
+		System.out.println("json:"+json);
 		PrintWriter writer = ServletActionContext.getResponse().getWriter();
 		writer.write(json);
 		writer.flush();
 		writer.close();		
 	}
-	
+	//更新房屋信息
+	public void updateHouseInfo() throws IOException {
+		String house_id = ServletActionContext.getRequest().getParameter("house_id");
+		String flag = ServletActionContext.getRequest().getParameter("flag");
+		HouseService houseService = new HouseService();
+		int update = houseService.updateHouseInfo(house_id,flag);
+		String json = JSON.toJSONString(update,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
+		PrintWriter writer = ServletActionContext.getResponse().getWriter();
+		writer.write(json);
+		writer.flush();
+		writer.close();	
+	}
 	@Override
 	public Picture getModel() {
 		// TODO Auto-generated method stub
