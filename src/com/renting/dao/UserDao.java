@@ -41,6 +41,17 @@ public class UserDao {
 		return result;
 	}
 
+	public int updatePwd(String username, String password) {
+		
+		Session session = HibernateUtil.getCurrentSession();//获取session
+		String hql = "update User u set u.password = :pwd  where username = :username";
+		Query query = session.createQuery(hql);
+		query.setParameter("pwd", password);
+		query.setParameter("username", username);
+		int update = query.executeUpdate();
+		return update;
+	}
+
 	
 
 }

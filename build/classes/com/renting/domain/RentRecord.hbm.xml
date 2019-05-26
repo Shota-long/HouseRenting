@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ <hibernate-mapping package="com.renting.domain">
+ 	<class name="com.renting.domain.RentRecord" table="rent_table">
+ 		<id name="rentId" column="rent_id">
+ 		<!-- 主键生成策略 手动生成-->
+ 			<generator class="assigned"></generator>
+ 		</id>
+ 		<property name="houseId" column="house_id" ></property>
+ 		<property name="lessorId" column="lessor_id" ></property>
+ 		<property name="lesseeId" column="lessee_id" ></property>
+ 		<property name="startDate" column="start_date" ></property>
+ 		<property name="endDate" column="end_date" ></property>
+ 		<property name="flag" column="flag" ></property>
+ 	</class>
+ </hibernate-mapping>

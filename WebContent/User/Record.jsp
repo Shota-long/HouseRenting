@@ -27,16 +27,16 @@ tr{
 </head>
 <body>
 	<div>
-		<span style="font-size: 20px; color: #FFA500;">已发布</span>
+		<span style="font-size: 20px; color: #FFA500;">浏览记录</span>
 	</div>
 	<hr/>
 	<div>
 		<table cellspacing='0' cellpadding='0' border='0' width='100%' data-toggle="table">
 			<thead>
 				<tr>
-					<th width="70%" style="font-size: 16px;">房源信息</th>
-					<th width="20%" style="font-size: 16px;">发布时间</th>
-					<th width="10%" style="font-size: 16px;">操作</th>
+					<th width="75%" style="font-size: 16px;">房源信息</th>
+					<th width="20%" style="font-size: 16px;">浏览时间</th>
+					<th width="5%" style="font-size: 16px;">操作</th>
 				</tr>
 			</thead>
 			<tbody id="box">
@@ -52,20 +52,19 @@ tr{
 <script type="text/javascript">
 $(function name() {
 	$.ajax({
-		url:encodeURI("${pageContext.request.contextPath}/HouseAction_findPublishInfo?flag=1"),
+		url:encodeURI("${pageContext.request.contextPath}/BrowseAction_selectRecord"),
 		cache:false,
 		type:"post",
 		data:{"login_name":"${login_name}"},
 		dataType:"json",
-		//contentType:"application/json;charset=utf-8",
 		success:function(data){
 			for (var i = 0; i < data.length; i++) {
 				$("#box").append(
 					"<tr width='100%'>"+
-						"<td style='display:none;'>"+data[i].house_id+"</td>"+
-						"<td width='70%' id='title'><a href='${pageContext.request.contextPath}/houseInformation/houseInfor.jsp?house_id="+data[i].house_id+"' target='_Blank'>"+data[i].title+"</a></td>"+
-						"<td width='20%'>"+data[i].date+"</td>"+
-						"<td id='del' width='10%' style='color:#00FF00;'>已发布/<a href='Contract.jsp?houseId="+data[i].house_id+"' style='color:#FF7F50' target='_blank'>确认出租</a></td>"+
+						"<td style='display:none;'>"+data[i][1]+"</td>"+
+						"<td width='75%' id='title'><a href='${pageContext.request.contextPath}/houseInformation/houseInfor.jsp?house_id="+data[i][3]+"' target='_Blank'>"+data[i][0]+"</a></td>"+
+						"<td width='20%'>"+new Date(parseInt(data[i][4])).toLocaleString()+"</td>"+
+						"<td id='del' width='5%' style='color:#00FF00;'></td>"+
 					"</tr>"	
 				);	
 			}

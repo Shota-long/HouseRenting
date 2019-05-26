@@ -65,4 +65,25 @@ public class UserService {
 		ActionContext.getContext().getSession().remove("login_name");
 	}
 
+	public int updatePwd(String username, String password) {
+		
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		UserDao user_dao = new UserDao();
+		int update = user_dao.updatePwd(username,password);
+		if(update==1) {
+			transaction.commit();
+			session.close();
+			return update;
+		}
+		else {
+			transaction.commit();
+			session.close();
+			return 0;
+		}
+		
+		
+		
+	}
+
 }

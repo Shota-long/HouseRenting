@@ -28,5 +28,7 @@
 		<mapping resource="com/renting/domain/House.hbm.xml"/>
 		<mapping resource="com/renting/domain/Picture.hbm.xml"/>
 		<mapping resource="com/renting/domain/Collection.hbm.xml"/>
+		<mapping resource="com/renting/domain/BrowseRecord.hbm.xml"/>
+		<mapping resource="com/renting/domain/RentRecord.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

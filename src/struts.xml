@@ -7,28 +7,6 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
 	<package name="MyPackage" namespace="/" extends="struts-default">
 	
-<!-- 	<interceptors> -->
-			<!-- 注册拦截器 -->
-<!-- 			<interceptor name="MyIntercept" class="com.forum.web.interceptor.Intercept_one"></interceptor> -->
-			<!-- 注册拦截器栈 -->
-<!-- 			<interceptor-stack name="MyInterceptStack"> -->
-			<!-- 引用自己的拦截器 -->
-<!-- 				<interceptor-ref name="MyIntercept"> -->
-					<!-- 出去哪些方法 -->
-<!-- 					<param name="excludeMethods">login</param> -->
-<!-- 					<param name="excludeMethods">removeSession</param> -->
-<!-- 				</interceptor-ref> -->
-			<!-- 引入struts默认的拦截器 -->
-<!-- 				<interceptor-ref name="defaultStack"></interceptor-ref> -->
-<!-- 			</interceptor-stack> -->
-<!-- 		</interceptors> -->
-		<!-- 指定包中的默认拦截器栈 -->
-<!-- 		<default-interceptor-ref name="MyInterceptStack"></default-interceptor-ref> -->
-		<!-- 全局结果集 -->
-<!-- 		<global-results> -->
-<!-- 			<result name="toLogin" type="redirect">/Login/login.jsp</result> -->
-<!-- 		</global-results> -->
-	
 	<global-allowed-methods>regex:.*</global-allowed-methods>
 		<action name="uploadPicAction_*" class="com.renting.web.uploadPicAction" method="{1}">
 		</action>
@@ -45,7 +23,9 @@
 		<action name="HouseAction_*" class="com.renting.web.HouseAction" method="{1}">
 		</action>
 		<action name="LocationAction_*" class="com.renting.web.LocationAction" method="{1}"></action>
-		<action name="TestAction_*" class="com.renting.web.TestAction" method="{1}">
+		<action name="BrowseAction_*" class="com.renting.web.BrowseAction" method="{1}">
+		</action>
+		<action name="RentRecordAction_*" class="com.renting.web.RentRecordAction" method="{1}">
 		</action>
 	</package>
 

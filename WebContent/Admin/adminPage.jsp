@@ -45,8 +45,6 @@
             <dd><a href="javascript:;">列表二</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="">云市场</a></li>
-        <li class="layui-nav-item"><a href="">发布商品</a></li>
       </ul>
     </div>
   </div>

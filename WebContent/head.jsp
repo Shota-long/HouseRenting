@@ -48,16 +48,8 @@
             	<li id="login"></li>
             	<li id="register"></li>
                 <li><a href="${pageContext.request.contextPath}/User/personalCenter.jsp">个人中心</a></li>
-            	<li class="dropdown">
-                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="50">
-                                                                       帮助中心
-                    	<b class="caret"></b>
-                	</a>
-                	<ul class="dropdown-menu" style="min-width:100%;">
-                    	<li><a href="#">网站建议</a></li>
-                    	<li class="divider"></li>
-                    	<li><a href="#">客户举报</a></li>
-                	</ul>
+            	<li>
+                	<a href="#">帮助中心</a>
             	</li>
         	</ul>    
   		</div>
@@ -72,7 +64,8 @@
 		var addre = "${location}";
 		if(login_name!=null && login_name != ""){
 			$("#login").html("<a>${login_name}</a>");
-			$("#register").html("<a href='${pageContext.request.contextPath}/index.jsp' onclick='exit()'>退出</a>");
+			$("#register").html("<a href='${pageContext.request.contextPath}/index.jsp?timestamp="+Math.random()+"' onclick='exit()'>退出</a>");
+			//$("#register").html("<a href='${pageContext.request.contextPath}/index.jsp' onclick='exit()'>退出</a>");
 			//$("#register").html("<a :href='+window.location.href+'.html'' onclick='exit()'>退出</a>");
 		}
 		else{
@@ -124,7 +117,6 @@
 			type:"post",
 			cache:false
 		});
-		//window.location.reload(true);
 	}
 </script>
 <!-- 城市三级联动 -->

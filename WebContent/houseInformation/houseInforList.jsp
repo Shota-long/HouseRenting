@@ -146,8 +146,9 @@ $(function(){
 		url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo?flag=1"),
 		type:"get",
 		cache:false,
+		data:{"location":"${location}"},
 		dataType:"json",
-		contentType:"application/json;charset=utf-8",
+		//contentType:"application/json;charset=utf-8",
 		success:function(resultList){
 			addBox(resultList);
 		}
@@ -245,7 +246,7 @@ function check(){
 		cache:false,
 		dataType:"json",
 		//contentType:"application/json;charset=utf-8",
-		data:{"minprice":minprice,"maxprice":maxprice,"type":type,"rent_way":rent_way,"decoration":decoration,"flag":"1"},
+		data:{"minprice":minprice,"maxprice":maxprice,"type":type,"rent_way":rent_way,"decoration":decoration,"flag":"1","location":"${location}"},
 		success:function(resultList){
 			addBox(resultList);
 		}

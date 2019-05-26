@@ -34,10 +34,11 @@ tr{
 		<table cellspacing='0' cellpadding='0' border='0' width='100%' data-toggle="table">
 			<thead>
 				<tr>
-					<th width="45%" style="font-size: 16px;">房源信息</th>
+					<th width="35%" style="font-size: 16px;">租房编号</th>
 					<th width="15%" style="font-size: 16px;">出租人</th>
 					<th width="15%" style="font-size: 16px;">承租人</th>
-					<th width="20%" style="font-size: 16px;">租赁时间</th>
+					<th width="15%" style="font-size: 16px;">租赁时间</th>
+					<th width="15%" style="font-size: 16px;">到期时间</th>
 					<th width="5%" style="font-size: 16px;">操作</th>
 				</tr>
 			</thead>
@@ -54,7 +55,7 @@ tr{
 <script type="text/javascript">
 $(function name() {
 	$.ajax({
-		//url:encodeURI("${pageContext.request.contextPath}/HouseAction_findPublishInfo?flag=1"),
+		url:encodeURI("${pageContext.request.contextPath}/RentRecordAction_selectRecord?flag=1"),
 		cache:false,
 		type:"post",
 		data:{"login_name":"${login_name}"},
@@ -64,10 +65,13 @@ $(function name() {
 			for (var i = 0; i < data.length; i++) {
 				$("#box").append(
 					"<tr width='100%'>"+
-						"<td style='display:none;'>"+data[i].house_id+"</td>"+
-						"<td width='75%' id='title'><a href='${pageContext.request.contextPath}/houseInformation/houseInfor.jsp?house_id="+data[i].house_id+"' target='_Blank'>"+data[i].title+"</a></td>"+
-						"<td width='20%'>"+data[i].date+"</td>"+
-						"<td id='del' width='5%' style='color:red;'>已出租</td>"+
+						"<td style='display:none;'>"+data[i].rentId+"</td>"+
+						"<td width='35%' id='title'>"+data[i].houseId+"</a></td>"+
+						"<td width='15%'>"+data[i].lessor+"</td>"+
+						"<td width='15%'>"+data[i].lessee+"</td>"+
+						"<td width='15%'>"+data[i].startDate+"</td>"+
+						"<td width='15%'>"+data[i].endDate+"</td>"+
+						"<td id='del' width='5%' style='color:#FF7F50;'>已出租</td>"+
 					"</tr>"	
 				);	
 			}

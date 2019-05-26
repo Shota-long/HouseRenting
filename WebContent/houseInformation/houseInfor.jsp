@@ -124,8 +124,8 @@ $(function name() {
 		dataType:"json",
 		//contentType:"application/json;charset=utf-8",
 		success:function(data){
-			getCoordinate(data);
-			addBox(data);
+			getCoordinate(data); //加载地图
+			addBox(data);    //加载租房信息
 		}
 	});
 	setTimeout("photo()",1000);
@@ -147,7 +147,7 @@ $(function name() {
 			}
 		});
 	}
-	
+	setTimeout("browseRecord()",1000);
 });
 //获取house_id
 function GetQueryString(name)
@@ -330,7 +330,7 @@ function photo(){
      	}
     }
 }
-
+//点击收藏按钮
 function toStar() {
 	var houseId = GetQueryString("house_id");
 	if ("${login_name}"=="") {
@@ -388,6 +388,17 @@ function toStar() {
 			*/
 		}
 	}
+}
+//插入浏览记录
+function browseRecord(houseId) {
+	var houseId = GetQueryString("house_id");
+
+	$.ajax({
+		url:encodeURI("${pageContext.request.contextPath}/BrowseAction_browseRecord"),
+		cache:false,
+		type:"post",
+		data:{"house_id":houseId,"login_name":"${login_name}"}
+	});
 }
 </script>
 </body>

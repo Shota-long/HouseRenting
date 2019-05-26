@@ -41,8 +41,6 @@ public class LoginFilter implements Filter {
 		list.add(".jpg");
 		String url = request.getContextPath();
 		String path = request.getServletPath();
-		System.out.println("url="+url);
-		System.out.println("path="+path);
 		//判断请求是否需要过滤
 		for (String object : list) {
 			//将path与list中不需要过滤的url进行比较，true则放行
@@ -51,10 +49,7 @@ public class LoginFilter implements Filter {
 				return;
 			}
 		}
-//		if(path.contains(".css")||path.contains(".js")||path.contains(".png")||path.contains(".jpg")) {
-//			chain.doFilter(request, response);
-//			return;
-//		}
+
 		Object user = request.getSession().getAttribute("login_name");
 		if(user == null || user == "") {
 			response.sendRedirect(url+"/Login/login.jsp");

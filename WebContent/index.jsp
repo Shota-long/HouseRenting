@@ -139,8 +139,9 @@ a:hover {
 			url:encodeURI("${pageContext.request.contextPath}/HouseAction_findHouseInfo?flag=1"),
 			type:"post",
 			cache:false,
+			data:{"location":"${location}"},
 			dataType:"json",
-			contentType:"application/json;charset=utf-8",
+			//contentType:"application/json;charset=utf-8",
 			success:function(resultList){
 				addBox(resultList);
 				//console.log(resultList);

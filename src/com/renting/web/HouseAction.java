@@ -46,22 +46,21 @@ public class HouseAction extends ActionSupport implements ModelDriven<Picture>{
 
 	@Test
 	public void findHouseInfo() throws IOException {
-		System.out.println("/////////////////////////执行action");
+		
 		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");//设置编码
 		String house_id = ServletActionContext.getRequest().getParameter("house_id");
-		String location = (String) ActionContext.getContext().getSession().get("location"); //情况
+		String location = ServletActionContext.getRequest().getParameter("location"); //地区
 		String minprice = ServletActionContext.getRequest().getParameter("minprice");//最低价格
 		String maxprice = ServletActionContext.getRequest().getParameter("maxprice");//最高价格
 		String type = ServletActionContext.getRequest().getParameter("type"); //房屋类型
 		String rent_way = ServletActionContext.getRequest().getParameter("rent_way"); //出租方式
 		String decoration = ServletActionContext.getRequest().getParameter("decoration"); //装修情况
 		String flag = ServletActionContext.getRequest().getParameter("flag");
-		System.out.println("house_id:"+house_id+",location:"+location+",minprice:"+minprice+",type:"+type+",rent_way:"+rent_way+",decoration:"+decoration+",flag:"+flag);
+//		System.out.println("house_id:"+house_id+",location:"+location+",minprice:"+minprice+",type:"+type+",rent_way:"+rent_way+",decoration:"+decoration+",flag:"+flag);
 		HouseService houseService = new HouseService();
 		List<House> result = houseService.findHouseInfo(house_id,location,minprice,maxprice,type,rent_way,decoration,flag);
 		//通过json传递数据
 		String json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
-		System.out.println("json:"+json);
 		PrintWriter writer = ServletActionContext.getResponse().getWriter();
 		writer.write(json);
 		writer.flush();
@@ -71,9 +70,6 @@ public class HouseAction extends ActionSupport implements ModelDriven<Picture>{
 	public void addHouseInfo() {
 		
 		String[] split = houseArray.split(",");
-		for (String string : split) {
-			System.out.println(string);
-		}
 		HouseService houseService = new HouseService();
 		houseService.addHouseInfo(picture,split);
 		
@@ -91,7 +87,7 @@ public class HouseAction extends ActionSupport implements ModelDriven<Picture>{
 			Object object = houseService.findPublishInfo(location,houseOwner,flag);
 			//String object2 = JSON.toJSONStringWithDateFormat(object, "yyyy-MM-dd hh:mm:ss", new SerializerFeature[0]);
 			json = JSON.toJSONString(object,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
-			System.out.println("houseOwner="+houseOwner+"location="+location+"flag="+flag);
+			//System.out.println("houseOwner="+houseOwner+"location="+location+"flag="+flag);
 		}
 		else {
 			String houseOwner = ServletActionContext.getRequest().getParameter("login_name");
@@ -101,7 +97,7 @@ public class HouseAction extends ActionSupport implements ModelDriven<Picture>{
 			json = JSON.toJSONString(result,SerializerFeature.DisableCircularReferenceDetect); //将JSON对象转化为JSON字符 ,关闭循环检测
 		
 		}
-		System.out.println("json:"+json);
+		//System.out.println("json:"+json);
 		PrintWriter writer = ServletActionContext.getResponse().getWriter();
 		writer.write(json);
 		writer.flush();

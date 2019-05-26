@@ -13,4 +13,6 @@
 <bean name="house" class="com.renting.domain.House" lazy-init="true"></bean>
 <bean name="picture" class="com.renting.domain.Picture" lazy-init="true"></bean>
 <bean name="collection" class="com.renting.domain.Collection" lazy-init="true"></bean>
+<bean name="browseRecord" class="com.renting.domain.BrowseRecord" lazy-init="true"></bean>
+<bean name="rentRecord" class="com.renting.domain.RentRecord" lazy-init="true"></bean>
 </beans>
