@@ -6,6 +6,7 @@ public class User {
 	private String username; //用户名	
 	private String password; //密码
 	private String telephone; // 电话
+	private String code;
 	private String email;    //邮箱地址
 	private String authority; //权限
 	
@@ -32,6 +33,13 @@ public class User {
 	}
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getEmail() {
 		return email;

@@ -6,31 +6,16 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title></title>
-
-	<link rel="icon" href="../dist/favicon.ico">
-
+	<link rel="icon" href="${pageContext.request.contextPath}/dist/favicon.ico">
     <!-- Bootstrap core CSS -->
     <!-- 新 Bootstrap 核心 CSS 文件 -->
 	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
-    <link href="../dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    -->
-
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <!-- <script src="../dist/js/ie-emulation-modes-warning.js"></script> -->
-
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <link href="${pageContext.request.contextPath}/Login/signin.css" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
 </head>
 <body>
@@ -64,11 +49,17 @@
        		<br/>
        		<label class="sr-only">电话号码</label>
         	<input type="text" id="inputTelephone" name="telephone" class="form-control" placeholder="Telephone" required>
-
-			<br/>
-			<label class="sr-only">邮箱</label>
-        	<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email Address" required>
-       		 <br/>
+			<br>
+			<div>	
+				<input type="text" style="width: 200px;float: left;height: 45px;" placeholder="Verification Code" id="code" name="code" class="form-control">
+				<!--验证码通过接口获取-->
+				<button class="btn btn-md btn-primary" type="button" id="sendMsg" onclick="sendMessage()" style="float: right; height: 44px;">发送验证码</button>
+			</div>
+			<div style="padding-top: 65px;">
+				<label class="sr-only">邮箱</label>
+        		<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email Address" required>
+       		</div>
+       		<br/>
        		<button class="btn btn-lg btn-primary btn-block" id="button" type="submit">Sign up</button>
        		<span class="help-block" style="color:red">${error}</span>
       </form>
@@ -77,13 +68,14 @@
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
- 
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript"><!--校验用户名-->
 	$(function(){
-		$("input[name='username']").blur(verifUsername)
+		$("input[name='username']").blur(verifUsername);
+		$("input[name='confirmPassword']").blur(verifPassword)
 	});
+	//校验用户名
 	function verifUsername(){
 		 var name = document.getElementById("inputUsername").value;
 		if(name==null||name.indexOf(" ")>=0||name==""){
@@ -117,15 +109,10 @@
 			});
 		}
 	}
-	</script> 
-	
-	<script type="text/javascript"><!--校验密码-->
-	$(function(){
-		$("input[name='confirmPassword']").blur(verifPassword)
-	});<!--获取焦点-->
+	//校验密码
 	function verifPassword(){
 		 var pwd1 = document.getElementById("inputPassword").value;
-         var pwd2 = document.getElementById("inputConfirmPassword").value;
+        var pwd2 = document.getElementById("inputConfirmPassword").value;
 		//对比两次输入的密码
 		//alert("pwd1"); 
 		if(pwd1 == pwd2) {
@@ -137,6 +124,32 @@
 		      document.getElementById("submit").disabled = true;
 		  }
 	}
-	</script>
+	//发送短信验证码
+	function sendMessage() {
+		$("#sendMsg").text("发送中...");
+    	var mobile = $("#inputTelephone").val();
+    	if(mobile==null||mobile==""){
+    		alert("请先输入手机号！");
+    		return false;
+		}
+    	else {
+        	$.ajax({
+    			url:encodeURI("${pageContext.request.contextPath}/SendMsg_sendNotice"),
+    			type:"post",
+    			cache:false,
+    			data:{"mobile":mobile},
+    			dataType:'json',
+				success:function(data){
+					if (data==null||data=="") {
+						$("#sendMsg").text("发送失败!");
+					}
+					else{
+						$("#sendMsg").text("发送成功!");
+					}
+				}
+        	});	
+    	}
+	}
+</script> 
 </body>
 </html>

@@ -22,6 +22,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.renting.domain.User;
 import com.renting.service.UserService;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserAction extends ActionSupport implements ModelDriven<User>{
@@ -65,17 +66,27 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	}
 	//注册
 	public String register() throws Exception {
-		user.setUid(UUID.randomUUID().toString());
-		user.setAuthority("2");
-		UserService user_service = new UserService();
-		boolean success = user_service.addUser(user);
-		if(success) {
-//			System.out.println("success");
-			return "toLogin";
+		
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		String VeCode = (String) ServletActionContext.getRequest().getSession().getAttribute("code"); 
+		if(user.getCode().equals(VeCode)) {
+			user.setUid(UUID.randomUUID().toString());
+			user.setAuthority("2");
+			UserService user_service = new UserService();
+			boolean success = user_service.addUser(user);
+			if(success) {
+//				System.out.println("success");
+				ServletActionContext.getRequest().getSession().removeAttribute("code");
+				return "toLogin";
+			}
+			else {
+//				System.out.println("fail");
+				ActionContext.getContext().put("error", "注册失败");
+				return "toRegister";
+			}
 		}
 		else {
-//			System.out.println("fail");
-			ActionContext.getContext().put("error", "注册失败");
+			ActionContext.getContext().put("error", "验证码错误");
 			return "toRegister";
 		}
 		
